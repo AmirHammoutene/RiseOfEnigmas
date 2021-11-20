@@ -67,6 +67,7 @@ public slots:
     void onAbout();
     void onReadme();
     void onDownloadLink();
+    void onSourcesLink();
     void goToHomehPage();
     void goToEulerGraphPage();
     void applyDefaultStyle();

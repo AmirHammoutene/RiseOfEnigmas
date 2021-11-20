@@ -107,6 +107,9 @@ void MainWindow::finishCreate()
     QAction * dowloadLinkAction = new QAction(tr("Download page on itch.io..."),linksMenu);
     QObject::connect(dowloadLinkAction, SIGNAL(triggered()), this, SLOT( onDownloadLink()));
     linksMenu->addAction(dowloadLinkAction);
+    QAction * sourceLinkAction = new QAction(tr("Sources page on github.com..."),linksMenu);
+    QObject::connect(sourceLinkAction, SIGNAL(triggered()), this, SLOT( onSourcesLink()));
+    linksMenu->addAction(sourceLinkAction);
     helpMenu->addAction(aboutAction);
     helpMenu->addAction(readmeAction);
     helpMenu->addMenu(linksMenu);
@@ -241,6 +244,11 @@ void MainWindow::onDownloadLink()
     QDesktopServices::openUrl(QUrl::fromLocalFile("https://amirhammoutene.itch.io/rise-of-enigmas"));
 }
 
+void MainWindow::onSourcesLink()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile("https://github.com/AmirHammoutene/RiseOfEnigmas"));
+}
+
 void MainWindow::goToHomehPage()
 {
     stackedWidget->setCurrentIndex(0);
@@ -322,9 +330,9 @@ void MainWindow::EGStepedUp(uint step, uint total)
     if(step == 0)
         text = instructionText+" : "+QString::number(total)+tr(" total edges");
     else if( step == total)
-        text = tr("Level ")+QString::number(eulerGraph->m_scene.m_currentStage)+tr(". Congratulation, you finished it !");
+        text = tr("Level ")+QString::number(eulerGraph->m_scene.m_currentStage)+tr(". Congratulation, you finished it!");
     else
-        text = instructionText+tr(". Good beginning ! Edge ")+QString::number(step)+"/"+QString::number(total);
+        text = instructionText+tr(". Good beginning! Edge ")+QString::number(step)+"/"+QString::number(total);
     EGstateLabel->setText(text);
 }
 

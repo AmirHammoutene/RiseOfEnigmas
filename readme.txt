@@ -6,6 +6,8 @@ This 1.3 version contains :
 
 ...but more types of enigmas are coming soon
 
+Itch.io link for download installer (Windows only for the moment): https://amirhammoutene.itch.io/rise-of-enigmas
+GitHub link for sources : https://github.com/AmirHammoutene/RiseOfEnigmas
 ----------
 Under GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 Please read licence.txt file

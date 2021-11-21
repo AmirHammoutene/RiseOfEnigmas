@@ -1,12 +1,15 @@
 These are series of enigmas games.
-Enjoy thinking about problems and puzzles.
+Enjoy thinking about puzzles.
 
 This 1.3 version contains :
 - Eulerian Graphs series
 
 ...but more types of enigmas are coming soon
 
-Itch.io link for download installer (Windows only for the moment): https://amirhammoutene.itch.io/rise-of-enigmas
+Links for download installer (Windows only for the moment): 
+GameJolt https://gamejolt.com/games/riseofenigmas/665470
+Itch.io https://amirhammoutene.itch.io/rise-of-enigmas
+
 GitHub link for sources : https://github.com/AmirHammoutene/RiseOfEnigmas
 ----------
 Under GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007

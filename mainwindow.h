@@ -14,6 +14,7 @@
 #include "EulerGraphInteract/eulergraphinteract.h"
 #include "EulerGraphInteract/vertex.h"
 #include "EulerGraphInteract/edge.h"
+#include "widgets/eulergraphstimechallengewidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -41,6 +42,7 @@ public:
     QVBoxLayout *HPcomingSoonLayout;
     EulerGraphInteract *eulerGraph; // Eulerian Graphs module
     QScrollArea *EGmainWidget; // EG for "Euler Graphs"
+    EulerGraphsTimeChallengeWidget *EGtimeChallengeWidget;
     QGridLayout *EGmainLayout;
     QHBoxLayout *EGtextAndButtonLayout;
     QCheckBox *EGeasyMode;
@@ -62,6 +64,7 @@ private:
 
 protected:
     void closeEvent(QCloseEvent *event) override;
+    void keyPressEvent(QKeyEvent *event) override;
 
 public slots:
     void onAbout();
@@ -78,6 +81,7 @@ public slots:
     void changeEGClickMode(int status);
     void EGStepedUp(uint step, uint total);
     void setNextEulerGraph();
+    void EGstartChallenge();
 
 signals:
     void EGlineColorRequest(QColor color);

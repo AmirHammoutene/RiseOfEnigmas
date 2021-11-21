@@ -15,13 +15,16 @@ include($$PWD/EulerGraphInteract/EulerGraphInteract.pri)
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    widgets/eulergraphstimechallengewidget.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    widgets/eulergraphstimechallengewidget.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    widgets/eulergraphstimechallengewidget.ui
 
 RESOURCES += \
     resources.qrc

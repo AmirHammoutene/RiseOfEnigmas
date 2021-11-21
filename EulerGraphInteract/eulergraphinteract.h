@@ -31,7 +31,7 @@ public:
     qreal m_scale;
     qreal scale() const;
     void setScale(const qreal &scale);
-    QPropertyAnimation* m_scaleAnimation;
+    QPointer<QPropertyAnimation> m_scaleAnimation;
     const qreal s_scaleAtAnimEnd = 5.;
     void sceneSendStepUpSignal();
 private:

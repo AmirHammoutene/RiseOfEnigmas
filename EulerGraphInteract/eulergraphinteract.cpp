@@ -42,7 +42,15 @@ void EulerGraphInteract::setScale(const qreal &scale)
 
 void EulerGraphInteract::setGraph(uint stage, const QPair<const QList<Vertex> &, const QList<Edge> &> &vertexesAndEdges)
 {
+    if(!m_scaleAnimation.isNull())
+    {
+        m_scaleAnimation->stop();
+        setMouseTracking(true);
+        viewport()->setMouseTracking(true);
+        delete m_scaleAnimation;
+    }
     m_scene.clean();
+    setScale(1.);
     if(stage == 0) // Stage begins at 1
         return;
 
@@ -87,14 +95,14 @@ void EulerGraphInteract::sceneHasFinished()
     m_scaleAnimation->setEndValue(s_scaleAtAnimEnd);
     m_scaleAnimation->start();
     QObject::connect(m_scaleAnimation, SIGNAL( finished()),this , SLOT( afterFinishedAnim() ));
-
 }
 
 void EulerGraphInteract::afterFinishedAnim()
 {
     m_scene.clean();
     setScale(1.);
-    m_scaleAnimation->deleteLater();
+    if(!m_scaleAnimation.isNull())
+        delete m_scaleAnimation;
     setMouseTracking(true);
     viewport()->setMouseTracking(true);
     emit fullFinishedGraph();

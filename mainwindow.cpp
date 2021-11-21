@@ -8,6 +8,7 @@
 #include <QColorDialog>
 #include <QStandardPaths>
 #include <QDesktopServices>
+#include <QKeyEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -178,13 +179,16 @@ void MainWindow::finishCreate()
     EGhomeButton->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
     EGhomeButton->setFont(QFont("Helvetica", 11,45));
 
+    EGtimeChallengeWidget = new EulerGraphsTimeChallengeWidget(EGmainWidget);
+
     eulerGraph = new EulerGraphInteract(EGmainWidget);
 
     EGmainLayout = new QGridLayout(EGmainWidget);
     EGmainLayout->addItem(new QSpacerItem(10,10),0,0);
-    EGmainLayout->addWidget(eulerGraph,0,1);
+    EGmainLayout->addWidget(EGtimeChallengeWidget,0,1);
     EGmainLayout->addItem(new QSpacerItem(10,10),0,2);
-    EGmainLayout->addItem(new QSpacerItem(10,10),1,1);
+    EGmainLayout->addWidget(eulerGraph,1,1);
+    EGmainLayout->addItem(new QSpacerItem(10,10),2,1);
 
     EGtextAndButtonLayout = new QHBoxLayout(EGmainWidget);
     EGtextAndButtonLayout->addWidget(EGstateLabel);
@@ -193,8 +197,8 @@ void MainWindow::finishCreate()
     EGtextAndButtonLayout->addSpacing(40);
     EGtextAndButtonLayout->addWidget(EGhomeButton);
 
-    EGmainLayout->addLayout(EGtextAndButtonLayout,2,1);
-    EGmainLayout->addItem(new QSpacerItem(40,40),3,1);
+    EGmainLayout->addLayout(EGtextAndButtonLayout,3,1);
+    EGmainLayout->addItem(new QSpacerItem(40,40),4,1);
 
     EGmainWidget->setLayout(EGmainLayout);
 
@@ -203,6 +207,7 @@ void MainWindow::finishCreate()
     QObject::connect( EGhomeButton, SIGNAL( released() ), this, SLOT( goToHomehPage() ) );
     QObject::connect( EGeasyMode, SIGNAL( stateChanged(int) ), this, SLOT( changeEGClickMode(int) ) );
     QObject::connect( this, SIGNAL( EGlineColorRequest(QColor)) , &eulerGraph->m_scene, SLOT( changeLineColor(QColor) ) ) ;
+    QObject::connect( EGtimeChallengeWidget, SIGNAL( startChallengeRequest()) , this, SLOT( EGstartChallenge() ) ) ;
 
     ///
 
@@ -325,6 +330,11 @@ void MainWindow::changeEGClickMode(int status)
 
 void MainWindow::EGStepedUp(uint step, uint total)
 {
+    if( !EulerGraphStageData.contains( EGscore+1 ))
+    {
+        EGstateLabel->setText(tr("You finished all levels, good job!"));
+        return;
+    }
     QString text;
     QString instructionText = tr("You have to complete the graph, crossing each edge only once, without releasing the mouse click.\nLevel ")+QString::number(eulerGraph->m_scene.m_currentStage);
     if(step == 0)
@@ -345,12 +355,24 @@ void MainWindow::goToEulerGraphPage()
         eulerGraph->sceneSendStepUpSignal();
     }
     else
+    {
+        if(EGtimeChallengeWidget->running)
+            EGtimeChallengeWidget->finishChallenge();
+        eulerGraph->setGraph(0, QPair< QList<Vertex> , QList<Edge> >());
         EGstateLabel->setText(tr("You finished all levels, good job!"));
+    }
 }
 
 void MainWindow::setNextEulerGraph()
 {
     EGscore = eulerGraph->m_scene.m_currentStage;
+    goToEulerGraphPage();
+}
+
+void MainWindow::EGstartChallenge()
+{
+    EGscore = 0;
+    eulerGraph->setGraph(0, QPair< QList<Vertex> , QList<Edge> >());
     goToEulerGraphPage();
 }
 
@@ -365,6 +387,18 @@ void MainWindow::resetEulerGraphScore()
         eulerGraph->setGraph( EGscore+1, EulerGraphStageData.value(EGscore+1) );
         eulerGraph->sceneSendStepUpSignal();
     }
+}
+
+
+void MainWindow::keyPressEvent(QKeyEvent *event)
+{
+    // For start/stop Eulerian Graphs Time Challenge (Ctrl+SpaceBar)
+    if(stackedWidget->currentIndex() == 1)
+    {
+        if(event->key() ==  Qt::Key_Space && event->modifiers() == Qt::ControlModifier)
+            EGtimeChallengeWidget->startOrStopChrono();
+    }
+    QMainWindow::keyReleaseEvent(event);
 }
 
 void MainWindow::constructData()

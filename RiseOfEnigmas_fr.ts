@@ -2,10 +2,132 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr_FR">
 <context>
+    <name>EulerGraphsTimeChallengeSendScoreDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Your time score will be stored in gamejolt.com</source>
+        <translation>Votre score de temps sera stocké chez gamjolt.com</translation>
+    </message>
+    <message>
+        <source>Pseudonym for this score</source>
+        <translation>Pseudonyme pour ce score</translation>
+    </message>
+    <message>
+        <source>Alphanumeric, space and dash characters only</source>
+        <translation type="vanished">Caractères alphanumériques, espaces et tirets seulement</translation>
+    </message>
+    <message>
+        <source>No error</source>
+        <translation>Aucune erreur</translation>
+    </message>
+    <message>
+        <source>Send time score online</source>
+        <translation>Envoyer votre score de temps en ligne</translation>
+    </message>
+    <message>
+        <source> seconds</source>
+        <translation> secondes</translation>
+    </message>
+    <message>
+        <source>Internal error: conversion to float</source>
+        <translation>Erreur interne : conversion vers un nombre réel</translation>
+    </message>
+    <message>
+        <source>User edit error: Pseudonym entered is empty</source>
+        <translation>Erreur d&apos;édition utilisateur : Le pseudonyme entré est vide</translation>
+    </message>
+    <message>
+        <source>HTTP URL parsing error: Pseudonym entered seems to have a unexpected characters.
+</source>
+        <translation type="vanished">Erreur de parsing URL HTTP : Le pseudonyme entré semble avoir un caractère inattendu.
+</translation>
+    </message>
+    <message>
+        <source>Network Reply error: </source>
+        <translation>Erreur de Réponse Internet : </translation>
+    </message>
+    <message>
+        <source>Response parsing error: </source>
+        <translation>Erreur de parsing de réponse : </translation>
+    </message>
+    <message>
+        <source>Storing via GameJolt API error: </source>
+        <translation>Erreur de stockage via Game Jolt API : </translation>
+    </message>
+    <message>
+        <source>Score sent</source>
+        <translation>Score envoyé</translation>
+    </message>
+    <message>
+        <source>Your score has been successfully sent.</source>
+        <translation>Votre score a bien été envoyé.</translation>
+    </message>
+    <message>
+        <source>Unable to send score</source>
+        <translation>Impossible d&apos;envoyer le score</translation>
+    </message>
+    <message>
+        <source>An error occured, your score has not been integrated.
+
+Error message:
+</source>
+        <translation>Une erreur s&apos;est produite, votre score n&apos;a pas été intégré.
+
+Message d&apos;erreur :
+</translation>
+    </message>
+    <message>
+        <source>Alphanumerical, space and dash characters only</source>
+        <translation>Caractères alphanumériques, espaces et tirets seulement</translation>
+    </message>
+    <message>
+        <source>HTTP URL parsing error: The pseudonym entered seems to have an unexpected character.
+</source>
+        <translation>Erreur de parsing URL HTTP : Le pseudonyme entré semble avoir un caractère inattendu.
+</translation>
+    </message>
+</context>
+<context>
+    <name>EulerGraphsTimeChallengeWidget</name>
+    <message>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>If you send your result after the challenge completed, it will be stored on gamejolt.com</source>
+        <translation>Si vous envoyez votre resultat après le défi complété, cela va être stocké sur gamejolt.com</translation>
+    </message>
+    <message>
+        <source>Challenge gamers online on time to finish all levels in a row
+Press Ctrl+SpaceBar or click on &apos;Start Challenge&apos;</source>
+        <translation>Défiez des joueurs en ligne sur le temps pour finir tous les niveaux à la suite
+Appuyez sur Ctrl+BarreEspace ou cliquez sur &apos;Commencer le Défi&apos;</translation>
+    </message>
+    <message>
+        <source>Start Challenge</source>
+        <translation>Commencer le Défi</translation>
+    </message>
+    <message>
+        <source>Send your time score online...</source>
+        <translation>Envoyez votre score de temps en ligne...</translation>
+    </message>
+    <message>
+        <source>View records...</source>
+        <translation>Voir les records...</translation>
+    </message>
+    <message>
+        <source>Stop Challenge</source>
+        <translation>Arrêter le Défi</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>MainWindow</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>You have to complete the graph, crossing each edge only once, without releasing the mouse click.
@@ -146,7 +268,7 @@ Version 1.0 - 20 Mars 2021</translation>
         <source>
 
 Version 1.3 - 20 November 2021</source>
-        <translation>
+        <translation type="vanished">
 
 Version 1.3 - 20 Novembre 2021</translation>
     </message>
@@ -161,6 +283,18 @@ Version 1.3 - 20 Novembre 2021</translation>
     <message>
         <source>. Good beginning! Edge </source>
         <translation>. Bon début ! Arrête </translation>
+    </message>
+    <message>
+        <source>Download page on gamejolt.com...</source>
+        <translation>Page de téléchargement sur gamejolt.com...</translation>
+    </message>
+    <message>
+        <source>
+
+Version 1.4 - 23 November 2021</source>
+        <translation>
+
+Version 1.4 - 23 Novembre 2021</translation>
     </message>
 </context>
 </TS>

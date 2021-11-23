@@ -1,12 +1,12 @@
 These are series of enigmas games.
 Enjoy thinking about puzzles.
 
-This 1.3 version contains :
-- Eulerian Graphs series
+This 1.4 version contains :
+- Eulerian Graphs series (with time challenge)
 
 ...but more types of enigmas are coming soon
 
-Links for download installer (Windows only for the moment): 
+Links yo download installer (Windows only for the moment): 
 GameJolt https://gamejolt.com/games/riseofenigmas/665470
 Itch.io https://amirhammoutene.itch.io/rise-of-enigmas
 
@@ -23,5 +23,5 @@ https://www.qt.io/download
 - Compile
 ----------
 Conceived and developed by Amir Hammoutene (amir.hammoutene@gmail.com) in March 2021.
-Version 1.3 : 20 November 2021
+Version 1.4 : 23 November 2021
 Language of programmation and tools : C++, Qt Creator

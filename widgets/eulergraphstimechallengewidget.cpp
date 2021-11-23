@@ -16,8 +16,11 @@ EulerGraphsTimeChallengeWidget::EulerGraphsTimeChallengeWidget(QWidget *parent) 
     running = false;
     timer.setInterval(100);
 
+    sendScoreDialog = new EulerGraphsTimeChallengeSendScoreDialog(this);
+
     QObject::connect(&timer, SIGNAL(timeout()), this, SLOT(updateTime()));
     QObject::connect(ui->startButton, SIGNAL(released()), this, SLOT(startOrStopChrono()));
+    QObject::connect(ui->sendScoreButton, SIGNAL(released()), this, SLOT(showSendScoreDialog()));
 }
 
 EulerGraphsTimeChallengeWidget::~EulerGraphsTimeChallengeWidget()
@@ -53,7 +56,7 @@ void EulerGraphsTimeChallengeWidget::startOrStopChrono()
         running = true;
         elapsedTimer.start();
         timer.start();
-        ui->startButton->setText("Stop Challenge");
+        ui->startButton->setText(tr("Stop Challenge"));
         ui->startButton->setStyleSheet("QPushButton {color: red;}");
         ui->sendScoreButton->setVisible(false);
     }
@@ -62,7 +65,13 @@ void EulerGraphsTimeChallengeWidget::startOrStopChrono()
         timer.stop();
         elapsedTimer.invalidate();
         running = false;
-        ui->startButton->setText("Start Challenge");
+        ui->startButton->setText(tr("Start Challenge"));
         ui->startButton->setStyleSheet("QPushButton {}");
     }
+}
+
+void EulerGraphsTimeChallengeWidget::showSendScoreDialog()
+{
+    sendScoreDialog->setTimeScore(ui->timeElapsedLabel->text());
+    sendScoreDialog->show();
 }

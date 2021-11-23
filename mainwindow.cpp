@@ -61,7 +61,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
 void MainWindow::finishCreate()
 {
     statusBar()->hide();
@@ -105,9 +104,12 @@ void MainWindow::finishCreate()
     QAction * readmeAction = new QAction(tr("Open readme.txt..."),menubar);
     QObject::connect(readmeAction, SIGNAL(triggered()), this, SLOT( onReadme()));
     QMenu *linksMenu = new QMenu(tr("Links"), helpMenu);
-    QAction * dowloadLinkAction = new QAction(tr("Download page on itch.io..."),linksMenu);
-    QObject::connect(dowloadLinkAction, SIGNAL(triggered()), this, SLOT( onDownloadLink()));
-    linksMenu->addAction(dowloadLinkAction);
+    QAction * dowloadLink1Action = new QAction(tr("Download page on gamejolt.com..."),linksMenu);
+    QObject::connect(dowloadLink1Action, SIGNAL(triggered()), this, SLOT( onDownloadLink1()));
+    linksMenu->addAction(dowloadLink1Action);
+    QAction * dowloadLink2Action = new QAction(tr("Download page on itch.io..."),linksMenu);
+    QObject::connect(dowloadLink2Action, SIGNAL(triggered()), this, SLOT( onDownloadLink2()));
+    linksMenu->addAction(dowloadLink2Action);
     QAction * sourceLinkAction = new QAction(tr("Sources page on github.com..."),linksMenu);
     QObject::connect(sourceLinkAction, SIGNAL(triggered()), this, SLOT( onSourcesLink()));
     linksMenu->addAction(sourceLinkAction);
@@ -236,7 +238,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::onAbout()
 {
     QMessageBox::about( this, tr("About"),
-     tr("Developed in March 2021 by ")+QString("Amir Hammoutene (amir.hammoutene@gmail.com)")+QString(tr("\n\nVersion 1.3 - 20 November 2021")) );
+     tr("Developed in March 2021 by ")+QString("Amir Hammoutene (amir.hammoutene@gmail.com)")+QString(tr("\n\nVersion 1.4 - 23 November 2021")) );
 }
 
 void MainWindow::onReadme()
@@ -244,7 +246,12 @@ void MainWindow::onReadme()
     QDesktopServices::openUrl(QUrl::fromLocalFile("readme.txt"));
 }
 
-void MainWindow::onDownloadLink()
+void MainWindow::onDownloadLink1()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile("https://gamejolt.com/games/riseofenigmas/665470"));
+}
+
+void MainWindow::onDownloadLink2()
 {
     QDesktopServices::openUrl(QUrl::fromLocalFile("https://amirhammoutene.itch.io/rise-of-enigmas"));
 }

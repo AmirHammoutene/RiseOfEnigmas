@@ -1,6 +1,8 @@
 #ifndef EULERGRAPHSTIMECHALLENGEWIDGET_H
 #define EULERGRAPHSTIMECHALLENGEWIDGET_H
 
+#include "eulergraphstimechallengesendscoredialog.h"
+
 #include <QFrame>
 #include <QElapsedTimer>
 #include <QTimer>
@@ -20,9 +22,11 @@ public:
     QTimer timer;
     bool running;
     void finishChallenge();
+    EulerGraphsTimeChallengeSendScoreDialog *sendScoreDialog;
 public slots:
     void updateTime();
     void startOrStopChrono();
+    void showSendScoreDialog();
 signals:
     void startChallengeRequest();
 private:

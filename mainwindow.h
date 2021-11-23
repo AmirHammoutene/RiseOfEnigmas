@@ -69,7 +69,8 @@ protected:
 public slots:
     void onAbout();
     void onReadme();
-    void onDownloadLink();
+    void onDownloadLink1();
+    void onDownloadLink2();
     void onSourcesLink();
     void goToHomehPage();
     void goToEulerGraphPage();

@@ -1,4 +1,4 @@
-QT += core gui
+QT += core gui network
 greaterThan(QT_MAJOR_VERSION,4): QT += widgets
 greaterThan(QT_MAJOR_VERSION,5): QT += core5compat
 
@@ -16,14 +16,17 @@ include($$PWD/EulerGraphInteract/EulerGraphInteract.pri)
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    widgets/eulergraphstimechallengesendscoredialog.cpp \
     widgets/eulergraphstimechallengewidget.cpp
 
 HEADERS += \
     mainwindow.h \
+    widgets/eulergraphstimechallengesendscoredialog.h \
     widgets/eulergraphstimechallengewidget.h
 
 FORMS += \
     mainwindow.ui \
+    widgets/eulergraphstimechallengesendscoredialog.ui \
     widgets/eulergraphstimechallengewidget.ui
 
 RESOURCES += \

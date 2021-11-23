@@ -16,16 +16,20 @@ include($$PWD/EulerGraphInteract/EulerGraphInteract.pri)
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    widgets/eulergraphstimechallengerecordsdialog.cpp \
     widgets/eulergraphstimechallengesendscoredialog.cpp \
     widgets/eulergraphstimechallengewidget.cpp
 
 HEADERS += \
+    PrivateData.h \
     mainwindow.h \
+    widgets/eulergraphstimechallengerecordsdialog.h \
     widgets/eulergraphstimechallengesendscoredialog.h \
     widgets/eulergraphstimechallengewidget.h
 
 FORMS += \
     mainwindow.ui \
+    widgets/eulergraphstimechallengerecordsdialog.ui \
     widgets/eulergraphstimechallengesendscoredialog.ui \
     widgets/eulergraphstimechallengewidget.ui
 

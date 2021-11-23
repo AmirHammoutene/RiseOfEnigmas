@@ -2,6 +2,55 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr_FR">
 <context>
+    <name>EulerGraphsTimeChallengeRecordsDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Time records of Eulerian Graphs Challenge</source>
+        <translation>Records de temps du Défi des Graphes Eulériens</translation>
+    </message>
+    <message>
+        <source>HTTP URL parsing error: </source>
+        <translation>Erreur de parsing URL HTTP : </translation>
+    </message>
+    <message>
+        <source>Unable fetch scores table</source>
+        <translation>Impossible d&apos;atteindre la table des scores</translation>
+    </message>
+    <message>
+        <source>An error occured, records can&apos;t be retrieved.
+
+Error message:
+</source>
+        <translation>Une erreur s&apos;est produite, les records ne peuvent pas être récupérer.
+
+Message d&apos;erreur :
+</translation>
+    </message>
+    <message>
+        <source>Network Reply error: </source>
+        <translation>Erreur de Réponse Internet : </translation>
+    </message>
+    <message>
+        <source>Response parsing error: </source>
+        <translation>Erreur de parsing de réponse : </translation>
+    </message>
+    <message>
+        <source>Storing via GameJolt API error: </source>
+        <translation>Erreur de stockage via Game Jolt API : </translation>
+    </message>
+    <message>
+        <source>Pseudonym</source>
+        <translation>Pseudonyme</translation>
+    </message>
+    <message>
+        <source>Score</source>
+        <translation>Score</translation>
+    </message>
+</context>
+<context>
     <name>EulerGraphsTimeChallengeSendScoreDialog</name>
     <message>
         <source>Dialog</source>

@@ -16,7 +16,6 @@
 int main(int argc, char *argv[])
 {
     QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
-
     QApplication a(argc, argv);
     QApplication::setOrganizationName("Amir Hammoutene");
     a.setWindowIcon(QIcon(":/img/icon.png"));

@@ -1,16 +1,14 @@
 #include "eulergraphstimechallengesendscoredialog.h"
 #include "ui_eulergraphstimechallengesendscoredialog.h"
+#include "PrivateData.h"
 #include <QSettings>
 #include <QMessageBox>
-#include <QUrlQuery>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QCryptographicHash>
 #include <QRegularExpressionValidator>
 #include <QRegularExpression>
-
-inline QString const GameJolt_private_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";// In the context of open-source code, this is private info
 
 EulerGraphsTimeChallengeSendScoreDialog::EulerGraphsTimeChallengeSendScoreDialog(QWidget *parent) :
     QDialog(parent),
@@ -27,7 +25,7 @@ EulerGraphsTimeChallengeSendScoreDialog::EulerGraphsTimeChallengeSendScoreDialog
     inError = false;
 
     QObject::connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(sendScoreOnline()));
-    QObject::connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(QDialog::reject()));
+    QObject::connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 }
 
 EulerGraphsTimeChallengeSendScoreDialog::~EulerGraphsTimeChallengeSendScoreDialog()
@@ -94,7 +92,7 @@ void EulerGraphsTimeChallengeSendScoreDialog::sendScoreOnline()
     QString sort = QString::number((int)timeScoreFl*10);
     QString table_id = "674033";
 
-    QUrl urlQueryPart("https://api.gamejolt.com/api/game/v1_2/scores/add/"
+    QUrl urlQueryPart("http://api.gamejolt.com/api/game/v1_2/scores/add/"
         "?game_id="+game_id+"&guest="+guest+"&score="+score+"&sort="+sort+"&table_id="+table_id);
 
     if(!urlQueryPart.isValid())
@@ -106,16 +104,16 @@ void EulerGraphsTimeChallengeSendScoreDialog::sendScoreOnline()
         return;
     }
 
-    QString strToHash = urlQueryPart.toString()+GameJolt_private_key;
+    QString strToHash = urlQueryPart.toString()+PrivateData::GameJolt_private_key;
     // Generate signature of query including private key to be able to send the query (Game Jolt security process)
     QString signature = QString::fromUtf8(QCryptographicHash::hash(strToHash.toUtf8(), QCryptographicHash::Md5).toHex());
 
     QNetworkRequest request(QUrl(urlQueryPart.toString()+"&signature="+signature));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-    tempStr = request.url().toString();
     networkManager->post(request,QByteArray());
 
     QObject::connect(networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(sendScoreRequestFinished(QNetworkReply*)));
+    QObject::connect(networkManager, &QNetworkAccessManager::finished, networkManager, &QNetworkAccessManager::deleteLater);
 
     QDialog::accept();
 }
@@ -151,8 +149,7 @@ void EulerGraphsTimeChallengeSendScoreDialog::sendScoreRequestFinished(QNetworkR
         {
             inError = true;
             jsonSubVal = jsonItemObj.value("message");
-            ui->errorLabel->setText(tr("Storing via GameJolt API error: ")+jsonSubVal.toString()+"\n"+
-                                    tempStr);
+            ui->errorLabel->setText(tr("Storing via GameJolt API error: ")+jsonSubVal.toString());
             ui->errorLabel->setVisible(true);
             showErrorDialog();
             return;

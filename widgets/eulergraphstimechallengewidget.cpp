@@ -17,10 +17,12 @@ EulerGraphsTimeChallengeWidget::EulerGraphsTimeChallengeWidget(QWidget *parent) 
     timer.setInterval(100);
 
     sendScoreDialog = new EulerGraphsTimeChallengeSendScoreDialog(this);
+    recordsDialog = new EulerGraphsTimeChallengeRecordsDialog(this);
 
     QObject::connect(&timer, SIGNAL(timeout()), this, SLOT(updateTime()));
     QObject::connect(ui->startButton, SIGNAL(released()), this, SLOT(startOrStopChrono()));
     QObject::connect(ui->sendScoreButton, SIGNAL(released()), this, SLOT(showSendScoreDialog()));
+    QObject::connect(ui->recordsButton, SIGNAL(released()), recordsDialog, SLOT(showAndLoad()));
 }
 
 EulerGraphsTimeChallengeWidget::~EulerGraphsTimeChallengeWidget()

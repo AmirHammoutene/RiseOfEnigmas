@@ -6,7 +6,7 @@ This 1.4 version contains :
 
 ...but more types of enigmas are coming soon
 
-Links yo download installer (Windows only for the moment): 
+Links to download installer (Windows only for the moment): 
 GameJolt https://gamejolt.com/games/riseofenigmas/665470
 Itch.io https://amirhammoutene.itch.io/rise-of-enigmas
 

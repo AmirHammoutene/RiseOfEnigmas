@@ -2,6 +2,7 @@
 #define EULERGRAPHSTIMECHALLENGEWIDGET_H
 
 #include "eulergraphstimechallengesendscoredialog.h"
+#include "eulergraphstimechallengerecordsdialog.h"
 
 #include <QFrame>
 #include <QElapsedTimer>
@@ -23,6 +24,7 @@ public:
     bool running;
     void finishChallenge();
     EulerGraphsTimeChallengeSendScoreDialog *sendScoreDialog;
+    EulerGraphsTimeChallengeRecordsDialog *recordsDialog;
 public slots:
     void updateTime();
     void startOrStopChrono();

@@ -20,7 +20,6 @@ public:
     QString timeScoreStr;
     float timeScoreFl;
     bool inError;
-    QString tempStr;
     void showErrorDialog();
 public slots :
     void sendScoreOnline();

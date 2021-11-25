@@ -29,6 +29,7 @@ public slots:
     void updateTime();
     void startOrStopChrono();
     void showSendScoreDialog();
+    void goToChallengePage();
 signals:
     void startChallengeRequest();
 private:

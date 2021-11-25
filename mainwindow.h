@@ -2,14 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QMenuBar>
 #include <QStackedWidget>
-#include <QScrollArea>
-#include <QGridLayout>
-#include <QHBoxLayout>
-#include <QVBoxLayout>
 #include <QLabel>
-#include <QPushButton>
 #include <QCheckBox>
 #include "EulerGraphInteract/eulergraphinteract.h"
 #include "EulerGraphInteract/vertex.h"
@@ -30,24 +24,11 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    QMenuBar *menubar;
     QStackedWidget *stackedWidget;
-    QScrollArea *HPmainWidget; // HP for "Home Page"
-    QGridLayout *HPmainLayout;
-    QPushButton *HPEulerGraphButton;
-    QLabel *HPEulerGraphLabel;
-    QPushButton *HPcomingSoonButton;
-    QLabel *HPcomingSoonLabel;
-    QVBoxLayout *HPEulerGraphLayout;
-    QVBoxLayout *HPcomingSoonLayout;
     EulerGraphInteract *eulerGraph; // Eulerian Graphs module
-    QScrollArea *EGmainWidget; // EG for "Euler Graphs"
-    EulerGraphsTimeChallengeWidget *EGtimeChallengeWidget;
-    QGridLayout *EGmainLayout;
-    QHBoxLayout *EGtextAndButtonLayout;
+    QLabel *EGstateLabel;// EG for "Euler Graphs"
     QCheckBox *EGeasyMode;
-    QPushButton *EGhomeButton;
-    QLabel *EGstateLabel;
+    EulerGraphsTimeChallengeWidget *EGtimeChallengeWidget;
     QHash< uint, QPair< QList<Vertex> , QList<Edge> > > EulerGraphStageData; // Eulerian Graphs vertexes and edges are hard stored
     uint EGscore;
     bool EGclickbyClickMode;

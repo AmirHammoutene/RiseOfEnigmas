@@ -9,6 +9,13 @@
 #include <QStandardPaths>
 #include <QDesktopServices>
 #include <QKeyEvent>
+#include <QPushButton>
+#include <QToolButton>
+#include <QMenuBar>
+#include <QScrollArea>
+#include <QGridLayout>
+#include <QHBoxLayout>
+#include <QVBoxLayout>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -69,7 +76,7 @@ void MainWindow::finishCreate()
 
     /// MENUBAR
 
-    menubar = new QMenuBar(this);
+    QMenuBar *menubar = new QMenuBar(this);
 
     QMenu *fileMenu = new QMenu(tr("File"), menubar);
     QAction *closeAction = new QAction(tr("Quit"),menubar);
@@ -91,7 +98,7 @@ void MainWindow::finishCreate()
     QObject::connect(THselectDarkStyleAction, SIGNAL(triggered()), this, SLOT(applyDarkStyle()));
     THselectDarkStyleAction->setCheckable(true);
     styleMenu->addAction(THselectDarkStyleAction);
-    QAction * EGLineColorAction = new QAction(tr("Eulerian Graphs lines' color..."),menubar);
+    QAction * EGLineColorAction = new QAction(tr("Change Eulerian Graphs lines' color..."),menubar);
     QObject::connect(EGLineColorAction, SIGNAL(triggered()), this, SLOT(chooseEGlineColor()));
     optionMenu->addMenu(styleMenu);
     optionMenu->addAction(EGLineColorAction);
@@ -125,32 +132,32 @@ void MainWindow::finishCreate()
 
     /// HOME PAGE
 
-    HPmainWidget = new QScrollArea(stackedWidget);
-    HPmainLayout = new QGridLayout(HPmainWidget);
+    QScrollArea *HPmainWidget = new QScrollArea(stackedWidget);
+    QGridLayout *HPmainLayout = new QGridLayout(HPmainWidget);
 
-    HPEulerGraphButton = new QPushButton(QIcon(":/img/EulerGraph.png"),"",HPmainWidget);
+    QPushButton *HPEulerGraphButton = new QPushButton(QIcon(":/img/EulerGraph.png"),"",HPmainWidget);
     HPEulerGraphButton->setIconSize(QSize(210,243));
     HPEulerGraphButton->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
-    HPEulerGraphLabel = new QLabel(tr("Eulerian Graphs"),HPmainWidget);
+    QLabel *HPEulerGraphLabel = new QLabel(tr("Eulerian Graphs"),HPmainWidget);
     HPEulerGraphLabel->setFont(QFont("Helvetica", 14,75));
     HPEulerGraphLabel->setAlignment(Qt::AlignCenter);
     HPEulerGraphLabel->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
 
-    HPEulerGraphLayout = new QVBoxLayout(HPmainWidget);
+    QVBoxLayout *HPEulerGraphLayout = new QVBoxLayout(HPmainWidget);
     HPEulerGraphLayout->addWidget(HPEulerGraphButton);
     HPEulerGraphLayout->addSpacing(30);
     HPEulerGraphLayout->addWidget(HPEulerGraphLabel);
 
-    HPcomingSoonButton = new QPushButton(QIcon(":/img/comingSoon.png"),"",HPmainWidget);
+    QPushButton *HPcomingSoonButton = new QPushButton(QIcon(":/img/comingSoon.png"),"",HPmainWidget);
     HPcomingSoonButton->setIconSize(QSize(210,243));
     HPcomingSoonButton->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
     HPcomingSoonButton->setEnabled(false);
-    HPcomingSoonLabel = new QLabel(tr("coming soon..."),HPmainWidget);
+    QLabel *HPcomingSoonLabel = new QLabel(tr("coming soon..."),HPmainWidget);
     HPcomingSoonLabel->setFont(QFont("Helvetica", 14,75));
     HPcomingSoonLabel->setAlignment(Qt::AlignCenter);
     HPcomingSoonLabel->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
 
-    HPcomingSoonLayout = new QVBoxLayout(HPmainWidget);
+    QVBoxLayout *HPcomingSoonLayout = new QVBoxLayout(HPmainWidget);
     HPcomingSoonLayout->addWidget(HPcomingSoonButton);
     HPcomingSoonLayout->addSpacing(30);
     HPcomingSoonLayout->addWidget(HPcomingSoonLabel);
@@ -169,15 +176,23 @@ void MainWindow::finishCreate()
 
     /// EULERIAN GRAPHS PAGE
 
-    EGmainWidget = new QScrollArea(stackedWidget);
+    QScrollArea *EGmainWidget = new QScrollArea(stackedWidget);
     EGstateLabel = new QLabel(EGmainWidget);
     EGstateLabel->setFont(QFont("Helvetica", 14,75));
     EGstateLabel->setWordWrap(true);
     EGstateLabel->setSizePolicy(QSizePolicy::Policy::MinimumExpanding,QSizePolicy::Policy::Minimum);
+    EGstateLabel->setMinimumWidth(500);
     EGeasyMode = new QCheckBox(tr("Click by Click Mode"),EGmainWidget);
     EGeasyMode->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
-    EGeasyMode->setFont(QFont("Helvetica", 11,45));
-    EGhomeButton = new QPushButton(tr("Back to Menu"),EGmainWidget);
+    EGeasyMode->setFont(QFont("Helvetica", 14,100));
+    QToolButton  *EGchangeLineColorButton = new QToolButton(HPmainWidget);
+    EGchangeLineColorButton->setFont(QFont("Helvetica", 11,45));
+    EGchangeLineColorButton->setDefaultAction(EGLineColorAction);
+    QToolButton  *EGresetButton = new QToolButton(HPmainWidget);
+    EGresetButton->setFont(QFont("Helvetica", 11,45));
+    EGresetButton->setDefaultAction(resetEGAction);
+    EGresetButton->setText(tr("Reset Levels"));
+    QPushButton *EGhomeButton = new QPushButton(tr("Back to Menu"),EGmainWidget);
     EGhomeButton->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
     EGhomeButton->setFont(QFont("Helvetica", 11,45));
 
@@ -185,18 +200,20 @@ void MainWindow::finishCreate()
 
     eulerGraph = new EulerGraphInteract(EGmainWidget);
 
-    EGmainLayout = new QGridLayout(EGmainWidget);
+    QGridLayout *EGmainLayout = new QGridLayout(EGmainWidget);
     EGmainLayout->addItem(new QSpacerItem(10,10),0,0);
     EGmainLayout->addWidget(EGtimeChallengeWidget,0,1);
     EGmainLayout->addItem(new QSpacerItem(10,10),0,2);
     EGmainLayout->addWidget(eulerGraph,1,1);
     EGmainLayout->addItem(new QSpacerItem(10,10),2,1);
 
-    EGtextAndButtonLayout = new QHBoxLayout(EGmainWidget);
+    QHBoxLayout *EGtextAndButtonLayout = new QHBoxLayout(EGmainWidget);
     EGtextAndButtonLayout->addWidget(EGstateLabel);
     EGtextAndButtonLayout->addStretch(0);
     EGtextAndButtonLayout->addWidget(EGeasyMode);
-    EGtextAndButtonLayout->addSpacing(40);
+    EGtextAndButtonLayout->addStretch(0);
+    EGtextAndButtonLayout->addWidget(EGchangeLineColorButton);
+    EGtextAndButtonLayout->addWidget(EGresetButton);
     EGtextAndButtonLayout->addWidget(EGhomeButton);
 
     EGmainLayout->addLayout(EGtextAndButtonLayout,3,1);
@@ -238,7 +255,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::onAbout()
 {
     QMessageBox::about( this, tr("About"),
-     tr("Developed in March 2021 by ")+QString("Amir Hammoutene (amir.hammoutene@gmail.com)")+QString(tr("\n\nVersion 1.4 - 23 November 2021")) );
+     tr("Developed in March 2021 by ")+QString("Amir Hammoutene (amir.hammoutene@gmail.com)")+QString(tr("\n\nVersion 1.4.1 - 25 November 2021")) );
 }
 
 void MainWindow::onReadme()

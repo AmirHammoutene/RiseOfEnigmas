@@ -23,6 +23,7 @@ EulerGraphsTimeChallengeWidget::EulerGraphsTimeChallengeWidget(QWidget *parent) 
     QObject::connect(ui->startButton, SIGNAL(released()), this, SLOT(startOrStopChrono()));
     QObject::connect(ui->sendScoreButton, SIGNAL(released()), this, SLOT(showSendScoreDialog()));
     QObject::connect(ui->recordsButton, SIGNAL(released()), recordsDialog, SLOT(showAndLoad()));
+    QObject::connect(ui->goToChallengePageButton, SIGNAL(released()), this, SLOT(goToChallengePage()));
 }
 
 EulerGraphsTimeChallengeWidget::~EulerGraphsTimeChallengeWidget()
@@ -76,4 +77,9 @@ void EulerGraphsTimeChallengeWidget::showSendScoreDialog()
 {
     sendScoreDialog->setTimeScore(ui->timeElapsedLabel->text());
     sendScoreDialog->show();
+}
+
+void EulerGraphsTimeChallengeWidget::goToChallengePage()
+{
+    ui->stackedWidget->setCurrentIndex(1);
 }

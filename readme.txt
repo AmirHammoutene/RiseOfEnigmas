@@ -1,8 +1,8 @@
 These are series of enigmas games.
 Enjoy thinking about puzzles.
 
-This 1.4 version contains :
-- Eulerian Graphs series (with time challenge)
+This 1.4.1 version contains :
+- Eulerian Graphs series (with online time challenge)
 
 ...but more types of enigmas are coming soon
 
@@ -23,5 +23,5 @@ https://www.qt.io/download
 - Compile
 ----------
 Conceived and developed by Amir Hammoutene (amir.hammoutene@gmail.com) in March 2021.
-Version 1.4 : 23 November 2021
+Version 1.4.1 : 25 November 2021
 Language of programmation and tools : C++, Qt Creator

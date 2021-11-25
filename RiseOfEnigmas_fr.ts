@@ -171,6 +171,16 @@ Appuyez sur Ctrl+BarreEspace ou cliquez sur &apos;Commencer le Défi&apos;</tran
         <source>Stop Challenge</source>
         <translation>Arrêter le Défi</translation>
     </message>
+    <message>
+        <source>You can practice on those Eulerian Graphs here
+and when you&apos;ll be ready, the Online Time Challenge is waiting for you!</source>
+        <translation>Vous pouvez vous entraîner sur ces Graphes Eulériens ici
+et lorsque vous serez prêt, le Défi en ligne de Temps vous attend !</translation>
+    </message>
+    <message>
+        <source>Go to the Challenge →</source>
+        <translation>Allez au Défi →</translation>
+    </message>
 </context>
 <context>
     <name>MainWindow</name>
@@ -259,7 +269,7 @@ Version 1.0 - 20 Mars 2021</translation>
     </message>
     <message>
         <source>Eulerian Graphs lines&apos; color...</source>
-        <translation>Couleur des lignes des Graphes Eulériens...</translation>
+        <translation type="vanished">Couleur des lignes des Graphes Eulériens...</translation>
     </message>
     <message>
         <source>Tools</source>
@@ -341,9 +351,21 @@ Version 1.3 - 20 Novembre 2021</translation>
         <source>
 
 Version 1.4 - 23 November 2021</source>
-        <translation>
+        <translation type="vanished">
 
 Version 1.4 - 23 Novembre 2021</translation>
+    </message>
+    <message>
+        <source>Change Eulerian Graphs lines&apos; color...</source>
+        <translation>Changez la couleur des lignes des Graphes Eulériens...</translation>
+    </message>
+    <message>
+        <source>
+
+Version 1.4.1 - 25 November 2021</source>
+        <translation>
+
+Version 1.4.1 - 25 Novembre 2021</translation>
     </message>
 </context>
 </TS>

@@ -122,24 +122,18 @@ QToolButton#qt_toolbar_ext_button
 /*-----QToolButton-----*/
 QToolButton 
 {
-	background-color: transparent;
-	color: #fff;
-	margin-left: 1px;
+	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(84, 84, 84, 255),stop:1 rgba(59, 59, 59, 255));
+	color: #ffffff;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 3px;
+	border-color: #051a39;
+	padding: 6px;
 }
-
-
-QToolButton:hover
-{
-	background-color: rgba(120, 120, 120, 20%);
-	border: 1px solid #787878;
-	color: #fff;
-	
-}
-
 
 QToolButton:pressed
 {
-	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(57, 57, 57, 255),stop:1 rgba(50, 50, 50, 255));
+	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(74, 74, 74, 255),stop:1 rgba(49, 49, 49, 255));
 	border: 1px solid #787878;
 
 }
@@ -147,7 +141,7 @@ QToolButton:pressed
 
 QToolButton:checked
 {
-	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(57, 57, 57, 255),stop:1 rgba(50, 50, 50, 255));
+	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(74, 74, 74, 255),stop:1 rgba(49, 49, 49, 255));
 	border: 1px solid #222;
 }
 

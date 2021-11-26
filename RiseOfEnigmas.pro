@@ -1,6 +1,6 @@
 QT += core gui network
 greaterThan(QT_MAJOR_VERSION,4): QT += widgets
-greaterThan(QT_MAJOR_VERSION,5): QT += core5compat
+greaterThan(QT_MAJOR_VERSION,5): QT += core5compat multimedia
 
 CONFIG += c++1z
 
@@ -18,20 +18,23 @@ SOURCES += \
     mainwindow.cpp \
     widgets/eulergraphstimechallengerecordsdialog.cpp \
     widgets/eulergraphstimechallengesendscoredialog.cpp \
-    widgets/eulergraphstimechallengewidget.cpp
+    widgets/eulergraphstimechallengewidget.cpp \
+    widgets/musicplayerwidget.cpp
 
 HEADERS += \
     PrivateData.h \
     mainwindow.h \
     widgets/eulergraphstimechallengerecordsdialog.h \
     widgets/eulergraphstimechallengesendscoredialog.h \
-    widgets/eulergraphstimechallengewidget.h
+    widgets/eulergraphstimechallengewidget.h \
+    widgets/musicplayerwidget.h
 
 FORMS += \
     mainwindow.ui \
     widgets/eulergraphstimechallengerecordsdialog.ui \
     widgets/eulergraphstimechallengesendscoredialog.ui \
-    widgets/eulergraphstimechallengewidget.ui
+    widgets/eulergraphstimechallengewidget.ui \
+    widgets/musicplayerwidget.ui
 
 RESOURCES += \
     resources.qrc

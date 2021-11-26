@@ -4,7 +4,8 @@
 QColor EdgeShape::s_defaultColor =  QColor( 200,200,200,100 ) ;
 qreal EdgeShape::s_lineWidth = 5.5 ;
 
-EdgeShape::EdgeShape(EGScene *scene, Edge edge):QObject(),QGraphicsLineItem(),m_Ox(edge.m_theOne.m_x),m_Oy(edge.m_theOne.m_y),m_Ex(edge.m_theOther.m_x),m_Ey(edge.m_theOther.m_y),m_scene(scene)
+EdgeShape::EdgeShape(EGScene *scene, Edge edge):QObject(),QGraphicsLineItem(),m_Ox(edge.m_theOne.m_x),m_Oy(edge.m_theOne.m_y),
+    m_Ex(edge.m_theOther.m_x),m_Ey(edge.m_theOther.m_y),m_scene(scene)
 {
     if(m_scene != nullptr)
     {

@@ -117,6 +117,9 @@ void MainWindow::finishCreate()
     QAction * dowloadLink2Action = new QAction(tr("Download page on itch.io..."),linksMenu);
     QObject::connect(dowloadLink2Action, SIGNAL(triggered()), this, SLOT( onDownloadLink2()));
     linksMenu->addAction(dowloadLink2Action);
+    QAction * musicPageAction = new QAction(tr("Music portfolio of Yeo Sky on soundcloud.com..."),linksMenu);
+    QObject::connect(musicPageAction, SIGNAL(triggered()), this, SLOT( onMusicLink()));
+    linksMenu->addAction(musicPageAction);
     QAction * sourceLinkAction = new QAction(tr("Sources page on github.com..."),linksMenu);
     QObject::connect(sourceLinkAction, SIGNAL(triggered()), this, SLOT( onSourcesLink()));
     linksMenu->addAction(sourceLinkAction);
@@ -143,7 +146,7 @@ void MainWindow::finishCreate()
     HPEulerGraphLabel->setAlignment(Qt::AlignCenter);
     HPEulerGraphLabel->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
 
-    QVBoxLayout *HPEulerGraphLayout = new QVBoxLayout(HPmainWidget);
+    QVBoxLayout *HPEulerGraphLayout = new QVBoxLayout();
     HPEulerGraphLayout->addWidget(HPEulerGraphButton);
     HPEulerGraphLayout->addSpacing(30);
     HPEulerGraphLayout->addWidget(HPEulerGraphLabel);
@@ -157,7 +160,7 @@ void MainWindow::finishCreate()
     HPcomingSoonLabel->setAlignment(Qt::AlignCenter);
     HPcomingSoonLabel->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
 
-    QVBoxLayout *HPcomingSoonLayout = new QVBoxLayout(HPmainWidget);
+    QVBoxLayout *HPcomingSoonLayout = new QVBoxLayout();
     HPcomingSoonLayout->addWidget(HPcomingSoonButton);
     HPcomingSoonLayout->addSpacing(30);
     HPcomingSoonLayout->addWidget(HPcomingSoonLabel);
@@ -175,8 +178,14 @@ void MainWindow::finishCreate()
     stackedWidget->addWidget(HPmainWidget);
 
     /// EULERIAN GRAPHS PAGE
-
     QScrollArea *EGmainWidget = new QScrollArea(stackedWidget);
+
+    musicPlayerWidget = new MusicPlayerWidget(EGmainWidget);
+
+    EGtimeChallengeWidget = new EulerGraphsTimeChallengeWidget(EGmainWidget);
+
+    eulerGraph = new EulerGraphInteract(EGmainWidget);
+
     EGstateLabel = new QLabel(EGmainWidget);
     EGstateLabel->setFont(QFont("Helvetica", 14,75));
     EGstateLabel->setWordWrap(true);
@@ -196,18 +205,15 @@ void MainWindow::finishCreate()
     EGhomeButton->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
     EGhomeButton->setFont(QFont("Helvetica", 11,45));
 
-    EGtimeChallengeWidget = new EulerGraphsTimeChallengeWidget(EGmainWidget);
-
-    eulerGraph = new EulerGraphInteract(EGmainWidget);
-
     QGridLayout *EGmainLayout = new QGridLayout(EGmainWidget);
-    EGmainLayout->addItem(new QSpacerItem(10,10),0,0);
-    EGmainLayout->addWidget(EGtimeChallengeWidget,0,1);
-    EGmainLayout->addItem(new QSpacerItem(10,10),0,2);
-    EGmainLayout->addWidget(eulerGraph,1,1);
-    EGmainLayout->addItem(new QSpacerItem(10,10),2,1);
+    EGmainLayout->addWidget(musicPlayerWidget, 0, 1);
+    EGmainLayout->addItem(new QSpacerItem(10,10),1,0);
+    EGmainLayout->addWidget(EGtimeChallengeWidget,1,1);
+    EGmainLayout->addItem(new QSpacerItem(10,10),1,2);
+    EGmainLayout->addWidget(eulerGraph,2,1);
+    EGmainLayout->addItem(new QSpacerItem(10,10),3,1);
 
-    QHBoxLayout *EGtextAndButtonLayout = new QHBoxLayout(EGmainWidget);
+    QHBoxLayout *EGtextAndButtonLayout = new QHBoxLayout();
     EGtextAndButtonLayout->addWidget(EGstateLabel);
     EGtextAndButtonLayout->addStretch(0);
     EGtextAndButtonLayout->addWidget(EGeasyMode);
@@ -216,8 +222,8 @@ void MainWindow::finishCreate()
     EGtextAndButtonLayout->addWidget(EGresetButton);
     EGtextAndButtonLayout->addWidget(EGhomeButton);
 
-    EGmainLayout->addLayout(EGtextAndButtonLayout,3,1);
-    EGmainLayout->addItem(new QSpacerItem(40,40),4,1);
+    EGmainLayout->addLayout(EGtextAndButtonLayout,4,1);
+    EGmainLayout->addItem(new QSpacerItem(10,10),5,1);
 
     EGmainWidget->setLayout(EGmainLayout);
 
@@ -255,7 +261,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
 void MainWindow::onAbout()
 {
     QMessageBox::about( this, tr("About"),
-     tr("Developed in March 2021 by ")+QString("Amir Hammoutene (amir.hammoutene@gmail.com)")+QString(tr("\n\nVersion 1.4.1 - 25 November 2021")) );
+     tr("Developed in March 2021 by ")+QString("Amir Hammoutene (amir.hammoutene@gmail.com)")+QString(tr("\n\nMusic by Yeo Sky"))
+                        +QString(tr("\n\nVersion 1.5.0 - 26 November 2021")) );
 }
 
 void MainWindow::onReadme()
@@ -273,6 +280,11 @@ void MainWindow::onDownloadLink2()
     QDesktopServices::openUrl(QUrl::fromLocalFile("https://amirhammoutene.itch.io/rise-of-enigmas"));
 }
 
+void MainWindow::onMusicLink()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile("https://soundcloud.com/yeos-house"));
+}
+
 void MainWindow::onSourcesLink()
 {
     QDesktopServices::openUrl(QUrl::fromLocalFile("https://github.com/AmirHammoutene/RiseOfEnigmas"));
@@ -284,6 +296,7 @@ void MainWindow::goToHomehPage()
     // reset modules states, render ...
     eulerGraph->setGraph(0, QPair< QList<Vertex> , QList<Edge> >());
     EGstateLabel->setText("");
+    musicPlayerWidget->stopMusic();
 }
 
 void MainWindow::applyStyleSheet(QString ssName)
@@ -360,7 +373,8 @@ void MainWindow::EGStepedUp(uint step, uint total)
         return;
     }
     QString text;
-    QString instructionText = tr("You have to complete the graph, crossing each edge only once, without releasing the mouse click.\nLevel ")+QString::number(eulerGraph->m_scene.m_currentStage);
+    QString instructionText = tr("You have to complete the graph by passing through each of the edges only once, without lifting pencil.\nLevel ")
+            +QString::number(eulerGraph->m_scene.m_currentStage);
     if(step == 0)
         text = instructionText+" : "+QString::number(total)+tr(" total edges");
     else if( step == total)
@@ -384,6 +398,11 @@ void MainWindow::goToEulerGraphPage()
             EGtimeChallengeWidget->finishChallenge();
         eulerGraph->setGraph(0, QPair< QList<Vertex> , QList<Edge> >());
         EGstateLabel->setText(tr("You finished all levels, good job!"));
+    }
+    if(!musicPlayerWidget->dontDisturbPlaying)
+    {
+        musicPlayerWidget->setMusicAndPlayLoop("music/YeoSky_Enigma.wav");
+        musicPlayerWidget->setMusicTitle("Yeo Sky - Enigma");
     }
 }
 

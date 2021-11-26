@@ -6,5 +6,7 @@
         <file>img/down_arrow.png</file>
         <file>img/up_arrow.png</file>
         <file>img/check.png</file>
+        <file>img/pause.png</file>
+        <file>img/resume.png</file>
     </qresource>
 </RCC>

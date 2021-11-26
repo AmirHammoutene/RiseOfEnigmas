@@ -4,7 +4,7 @@
  *
  * This program is a series of puzzle games.
  *
- * The code uses a lot of Qt framework version 6. You'll find a bunch of documentation about Qt classes on internet and principaly on https://doc.qt.io/
+ * The code uses a lot of Qt framework version 6. You'll find a bunch of documentation about Qt classes on internet and principally on https://doc.qt.io/
 **/
 
 #include "mainwindow.h"

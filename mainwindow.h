@@ -9,6 +9,7 @@
 #include "EulerGraphInteract/vertex.h"
 #include "EulerGraphInteract/edge.h"
 #include "widgets/eulergraphstimechallengewidget.h"
+#include "widgets/musicplayerwidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -37,6 +38,7 @@ public:
     QAction * THselectDefaultStyleAction; // TH for "Theme"
     QAction * THselectDarkStyleAction;
     QString THstyleName;
+    MusicPlayerWidget *musicPlayerWidget;
 
 private:
     Ui::MainWindow *ui;
@@ -52,6 +54,7 @@ public slots:
     void onReadme();
     void onDownloadLink1();
     void onDownloadLink2();
+    void onMusicLink();
     void onSourcesLink();
     void goToHomehPage();
     void goToEulerGraphPage();

@@ -58,12 +58,13 @@ void EulerGraphsTimeChallengeRecordsDialog::loadRecords()
     networkManager->post(request,QByteArray());
 
     QObject::connect(networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(sendScoreRequestFinished(QNetworkReply*)));
-    QObject::connect(networkManager, SIGNAL(finished()), networkManager, SLOT(deleteLater()));
+    QObject::connect(networkManager, SIGNAL(finished(QNetworkReply *)), networkManager, SLOT(deleteLater()));
 }
 
 void EulerGraphsTimeChallengeRecordsDialog::showErrorDialog()
 {
-    QMessageBox::critical(this, tr("Unable fetch scores table"),tr("An error occured, records can't be retrieved.\n\nError message:\n")+errorString);
+    QMessageBox::critical(this, tr("Unable fetch scores table"),tr("An error occured, records can't be retrieved.\n\nError message:\n")
+                          +errorString);
 }
 
 void EulerGraphsTimeChallengeRecordsDialog::showAndLoad()
@@ -108,7 +109,6 @@ void EulerGraphsTimeChallengeRecordsDialog::sendScoreRequestFinished(QNetworkRep
 
         QJsonArray jsonScoresArray = jsonItemObj.value("scores").toArray();
 
-        QString content;
         QStandardItemModel *model = new QStandardItemModel(ui->tableView);
 
         for (auto v : jsonScoresArray) {

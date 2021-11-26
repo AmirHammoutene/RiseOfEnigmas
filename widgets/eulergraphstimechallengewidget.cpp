@@ -10,7 +10,7 @@ EulerGraphsTimeChallengeWidget::EulerGraphsTimeChallengeWidget(QWidget *parent) 
     setFrameShape(QFrame::Box);
     setFrameShadow(QFrame::Raised);
 
-    ui->sendScoreButton->setStyleSheet("QPushButton {color:green;}");
+    ui->sendScoreButton->setStyleSheet("QPushButton {color:orange;}");
     ui->sendScoreButton->setVisible(false);
 
     running = false;

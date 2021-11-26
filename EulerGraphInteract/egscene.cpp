@@ -71,7 +71,8 @@ void EGScene::drawCurrentLine(QGraphicsSceneMouseEvent *event)
     // refreshing the drawing by hiding and recreating line with new position
     if(tempDrawingLine!= nullptr)
         tempDrawingLine->setVisible(false);
-    tempDrawingLine = addLine(origPoint.x(),origPoint.y(), event->scenePos().x(), event->scenePos().y(),QPen(s_lineColor,s_lineWidth));
+    tempDrawingLine = addLine(origPoint.x(),origPoint.y(), event->scenePos().x(),
+                              event->scenePos().y(),QPen(s_lineColor,s_lineWidth));
 }
 
 void EGScene::mousePressEvent(QGraphicsSceneMouseEvent *event)

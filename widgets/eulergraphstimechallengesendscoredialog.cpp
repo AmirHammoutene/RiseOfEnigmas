@@ -20,7 +20,7 @@ EulerGraphsTimeChallengeSendScoreDialog::EulerGraphsTimeChallengeSendScoreDialog
     ui->errorLabel->setVisible(false);
     ui->pseudoLineEdit->setValidator(new QRegularExpressionValidator(QRegularExpression("[A-Za-z0-9_\\- ]*")));
     loadOrGeneratePseudo();
-    timeScoreFl = 999.9;
+    timeScoreFl = 999.9f;
     timeScoreStr = "999.9";
     inError = false;
 
@@ -98,7 +98,8 @@ void EulerGraphsTimeChallengeSendScoreDialog::sendScoreOnline()
     if(!urlQueryPart.isValid())
     {
         inError = true;
-        ui->errorLabel->setText(tr("HTTP URL parsing error: The pseudonym entered seems to have an unexpected character.\n")+urlQueryPart.errorString());
+        ui->errorLabel->setText(tr("HTTP URL parsing error: The pseudonym entered seems to have an unexpected character.\n")
+                                +urlQueryPart.errorString());
         ui->errorLabel->setVisible(true);
         showErrorDialog();
         return;
@@ -113,7 +114,7 @@ void EulerGraphsTimeChallengeSendScoreDialog::sendScoreOnline()
     networkManager->post(request,QByteArray());
 
     QObject::connect(networkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(sendScoreRequestFinished(QNetworkReply*)));
-    QObject::connect(networkManager, &QNetworkAccessManager::finished, networkManager, &QNetworkAccessManager::deleteLater);
+    QObject::connect(networkManager, SIGNAL(finished(QNetworkReply *)), networkManager, SLOT(deleteLater()));
 
     QDialog::accept();
 }
@@ -163,6 +164,7 @@ void EulerGraphsTimeChallengeSendScoreDialog::sendScoreRequestFinished(QNetworkR
 
 void EulerGraphsTimeChallengeSendScoreDialog::showErrorDialog()
 {
-    QMessageBox::critical(this, tr("Unable to send score"),tr("An error occured, your score has not been integrated.\n\nError message:\n")+ui->errorLabel->text());
+    QMessageBox::critical(this, tr("Unable to send score"),tr("An error occured, your score has not been integrated.\n\nError message:\n")
+                          +ui->errorLabel->text());
 }
 

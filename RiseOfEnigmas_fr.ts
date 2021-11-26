@@ -74,7 +74,7 @@ Message d&apos;erreur :
     </message>
     <message>
         <source>Send time score online</source>
-        <translation>Envoyer votre score de temps en ligne</translation>
+        <translation>Envoyez votre score de temps en ligne</translation>
     </message>
     <message>
         <source> seconds</source>
@@ -179,7 +179,7 @@ et lorsque vous serez prêt, le Défi en ligne de Temps vous attend !</translati
     </message>
     <message>
         <source>Go to the Challenge →</source>
-        <translation>Allez au Défi →</translation>
+        <translation>Aller au Défi →</translation>
     </message>
 </context>
 <context>
@@ -191,12 +191,12 @@ et lorsque vous serez prêt, le Défi en ligne de Temps vous attend !</translati
     <message>
         <source>You have to complete the graph, crossing each edge only once, without releasing the mouse click.
 Level </source>
-        <translation>Il faut compléter le graphe, en passant par chacune des arrêtes qu&apos;une seule fois, sans relâcher le clic de la souris.
+        <translation type="vanished">Il faut compléter le graphe, en passant par chacune des arrêtes qu&apos;une seule fois, sans relâcher le clic de la souris.
 Niveau </translation>
     </message>
     <message>
         <source> total edges</source>
-        <translation> arrêtes en tout</translation>
+        <translation> arêtes en tout</translation>
     </message>
     <message>
         <source>Level </source>
@@ -228,7 +228,7 @@ Niveau </translation>
     </message>
     <message>
         <source>About</source>
-        <translation>A propos</translation>
+        <translation>À propos</translation>
     </message>
     <message>
         <source>Developed in March 2021 by </source>
@@ -245,7 +245,7 @@ Version 1.0 - 20 Mars 2021</translation>
     <message>
         <source>Choose Eulerian Graphs lines&apos; color</source>
         <oldsource>Choose Eulerian Graphs line color</oldsource>
-        <translation>Choisissez la couleur des lignes des Graphes Eulériens</translation>
+        <translation>Choisir la couleur des lignes des Graphes Eulériens</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -257,7 +257,7 @@ Version 1.0 - 20 Mars 2021</translation>
     </message>
     <message>
         <source>About...</source>
-        <translation>A propos...</translation>
+        <translation>À propos...</translation>
     </message>
     <message>
         <source>Help</source>
@@ -341,7 +341,7 @@ Version 1.3 - 20 Novembre 2021</translation>
     </message>
     <message>
         <source>. Good beginning! Edge </source>
-        <translation>. Bon début ! Arrête </translation>
+        <translation>. Bon début ! Arête </translation>
     </message>
     <message>
         <source>Download page on gamejolt.com...</source>
@@ -357,15 +357,52 @@ Version 1.4 - 23 Novembre 2021</translation>
     </message>
     <message>
         <source>Change Eulerian Graphs lines&apos; color...</source>
-        <translation>Changez la couleur des lignes des Graphes Eulériens...</translation>
+        <translation>Changer la couleur des lignes des Graphes Eulériens...</translation>
     </message>
     <message>
         <source>
 
 Version 1.4.1 - 25 November 2021</source>
-        <translation>
+        <translation type="vanished">
 
 Version 1.4.1 - 25 Novembre 2021</translation>
+    </message>
+    <message>
+        <source>Music page on soundcloud.com...</source>
+        <translation type="vanished">Page musicale sur soundcloud.com...</translation>
+    </message>
+    <message>
+        <source>
+
+Music by Yeo Sky</source>
+        <translation>
+
+Musique par Yeo Sky</translation>
+    </message>
+    <message>
+        <source>
+
+Version 1.5.0 - 26 November 2021</source>
+        <translation>
+
+Version 1.5.0 - 26 Novembre 2021</translation>
+    </message>
+    <message>
+        <source>You have to complete the graph by passing through each of the edges only once, without lifting pencil.
+Level </source>
+        <translation>Vous devez compléter le graphe en passant par chacune des arêtes une seule fois, sans lever le crayon.
+Niveau </translation>
+    </message>
+    <message>
+        <source>Music portfolio of Yeo Sky on soundcloud.com...</source>
+        <translation>Portfolio musical de Yeo Sky sur soundcloud.com...</translation>
+    </message>
+</context>
+<context>
+    <name>MusicPlayerWidget</name>
+    <message>
+        <source>Form</source>
+        <translation></translation>
     </message>
 </context>
 </TS>

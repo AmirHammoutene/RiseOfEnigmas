@@ -7,13 +7,16 @@ double AdvancedPointShape::s_maxDiameter = 30. ;
 QColor AdvancedPointShape::s_colorAfterAnim = QColor( 70,85,150 ) ;
 qreal AdvancedPointShape::s_scaleAfterAnim = 1.3 ;
 
-AdvancedPointShape::AdvancedPointShape(EGScene *scene, Vertex vertex):QObject(),QGraphicsItem(),m_x(vertex.m_x),m_y(vertex.m_y),m_scene(scene)
+AdvancedPointShape::AdvancedPointShape(EGScene *scene, Vertex vertex):QObject(),QGraphicsItem(),m_x(vertex.m_x),
+    m_y(vertex.m_y),m_scene(scene)
 {
     setAcceptHoverEvents(true);
     if(m_scene != nullptr)
     {
-        m_centralPoint = QSharedPointer<QGraphicsEllipseItem>( m_scene->addEllipse(m_x-s_centralDiameter/2.,m_y-s_centralDiameter/2.,s_centralDiameter,s_centralDiameter,QPen(s_defaultColor),QBrush(s_defaultColor)) );
-        m_ring = QSharedPointer<QGraphicsEllipseItem>( m_scene->addEllipse(m_x-s_ringDiameter/2.,m_y-s_ringDiameter/2.,s_ringDiameter,s_ringDiameter,QPen(s_defaultColor),QBrush()) );
+        m_centralPoint = QSharedPointer<QGraphicsEllipseItem>( m_scene->addEllipse(m_x-s_centralDiameter/2.,m_y-s_centralDiameter/2.,
+                                                         s_centralDiameter,s_centralDiameter,QPen(s_defaultColor),QBrush(s_defaultColor)) );
+        m_ring = QSharedPointer<QGraphicsEllipseItem>( m_scene->addEllipse(m_x-s_ringDiameter/2.,m_y-s_ringDiameter/2.,
+                                                         s_ringDiameter,s_ringDiameter,QPen(s_defaultColor),QBrush()) );
         m_scene->appendPointShape(this);
     }
     setScale(1.);

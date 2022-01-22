@@ -122,3 +122,12 @@ void EulerGraphsTimeChallengeRecordsDialog::sendScoreRequestFinished(QNetworkRep
         ui->tableView->setModel(model);
     }
 }
+
+void EulerGraphsTimeChallengeRecordsDialog::changeEvent(QEvent *event)
+{
+    if(event->type() == QEvent::LanguageChange)
+    {
+       ui->retranslateUi(this);
+    }
+    QDialog::changeEvent(event);
+}

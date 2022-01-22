@@ -160,6 +160,15 @@ void EulerGraphsTimeChallengeSendScoreDialog::sendScoreRequestFinished(QNetworkR
     }
 }
 
+void EulerGraphsTimeChallengeSendScoreDialog::changeEvent(QEvent *event)
+{
+    if(event->type() == QEvent::LanguageChange)
+    {
+       ui->retranslateUi(this);
+    }
+    QDialog::changeEvent(event);
+}
+
 
 
 void EulerGraphsTimeChallengeSendScoreDialog::showErrorDialog()

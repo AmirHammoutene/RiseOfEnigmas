@@ -5,11 +5,14 @@
 #include <QStackedWidget>
 #include <QLabel>
 #include <QCheckBox>
+#include <QTranslator>
 #include "EulerGraphInteract/eulergraphinteract.h"
 #include "EulerGraphInteract/vertex.h"
 #include "EulerGraphInteract/edge.h"
 #include "widgets/eulergraphstimechallengewidget.h"
 #include "widgets/musicplayerwidget.h"
+#include "widgets/menudialog.h"
+#include "widgets/congradulationdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -35,10 +38,18 @@ public:
     bool EGclickbyClickMode;
     QColor EGlineColor;
     int EGcustomColorPosition;
-    QAction * THselectDefaultStyleAction; // TH for "Theme"
-    QAction * THselectDarkStyleAction;
-    QString THstyleName;
     MusicPlayerWidget *musicPlayerWidget;
+    MenuDialog *menuDialog;
+    QTranslator *translator;
+    QTranslator *baseTranslator;
+
+    QLabel *HPEulerGraphLabel;
+    QLabel *HPcomingSoonLabel;
+    QPushButton  *EGchangeLineColorButton;
+    QPushButton  *EGresetButton;
+    QPushButton *EGhomeButton;
+
+    CongradulationDialog *congradulationPopup;
 
 private:
     Ui::MainWindow *ui;
@@ -48,19 +59,16 @@ private:
 protected:
     void closeEvent(QCloseEvent *event) override;
     void keyPressEvent(QKeyEvent *event) override;
+    void changeEvent(QEvent* event) override;
 
 public slots:
+    void changeToEnglishLanguage();
+    void changeToFrenchLanguage();
     void onAbout();
-    void onReadme();
-    void onDownloadLink1();
-    void onDownloadLink2();
-    void onMusicLink();
     void onSourcesLink();
     void goToHomehPage();
     void goToEulerGraphPage();
-    void applyDefaultStyle();
-    void applyDarkStyle();
-    void applyStyleSheet(QString ssName);
+    void applyStyleSheet();
     void chooseEGlineColor();
     void resetEulerGraphScore();
     void changeEGClickMode(int status);

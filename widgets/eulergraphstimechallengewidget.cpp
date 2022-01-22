@@ -83,3 +83,12 @@ void EulerGraphsTimeChallengeWidget::goToChallengePage()
 {
     ui->stackedWidget->setCurrentIndex(1);
 }
+
+void EulerGraphsTimeChallengeWidget::changeEvent(QEvent *event)
+{
+    if(event->type() == QEvent::LanguageChange)
+    {
+       ui->retranslateUi(this);
+    }
+    QFrame::changeEvent(event);
+}

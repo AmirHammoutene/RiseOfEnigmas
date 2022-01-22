@@ -8,5 +8,6 @@
         <file>img/check.png</file>
         <file>img/pause.png</file>
         <file>img/resume.png</file>
+        <file>img/fireworks.gif</file>
     </qresource>
 </RCC>

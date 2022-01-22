@@ -48,6 +48,7 @@ void EulerGraphInteract::setGraph(uint stage, const QPair<const QList<Vertex> &,
         setMouseTracking(true);
         viewport()->setMouseTracking(true);
         delete m_scaleAnimation;
+        m_scaleAnimation = nullptr;
     }
     m_scene.clean();
     setScale(1.);
@@ -102,7 +103,10 @@ void EulerGraphInteract::afterFinishedAnim()
     m_scene.clean();
     setScale(1.);
     if(!m_scaleAnimation.isNull())
+    {
         delete m_scaleAnimation;
+        m_scaleAnimation = nullptr;
+    }
     setMouseTracking(true);
     viewport()->setMouseTracking(true);
     emit fullFinishedGraph();

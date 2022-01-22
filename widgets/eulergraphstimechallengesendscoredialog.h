@@ -24,6 +24,8 @@ public:
 public slots :
     void sendScoreOnline();
     void sendScoreRequestFinished(QNetworkReply *reply);
+protected:
+    void changeEvent(QEvent* event) override;
 private:
     Ui::EulerGraphsTimeChallengeSendScoreDialog *ui;
 };

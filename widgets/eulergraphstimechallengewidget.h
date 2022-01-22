@@ -32,6 +32,8 @@ public slots:
     void goToChallengePage();
 signals:
     void startChallengeRequest();
+protected:
+    void changeEvent(QEvent* event) override;
 private:
     Ui::EulerGraphsTimeChallengeWidget *ui;
 };

@@ -24,30 +24,21 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     setWindowTitle("Rise Of Enigmas");
 
+    translator = new QTranslator();
+    baseTranslator = new QTranslator();
+
     // Load window settings from .ini file (geometry,...)
     QSettings::setDefaultFormat(QSettings::IniFormat);
     QSettings::setPath(QSettings::defaultFormat(), QSettings::UserScope,
         QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)); // Most settings stored in a ini file in AppData
     QSettings settings;
-    if(!restoreGeometry(settings.value("mainWindowGeometry").toByteArray()) )
-    {
-        showMaximized();
-    }
-    restoreState(settings.value("mainWindowState").toByteArray());
 
+    showFullScreen();
     constructData();
     finishCreate();
 
     // Load other options (style, Eulerian Graphs line color,...)
-    THstyleName = settings.value("style", "").toString();
-    if(THstyleName.isEmpty())
-    {
-        THstyleName = "dark";
-    }
-    if(THstyleName == "dark")
-        applyDarkStyle();
-    else
-        applyDefaultStyle();
+    applyStyleSheet();
 
     EGcustomColorPosition = 1;
     EGlineColor = QColor(settings.value("EulerGraphLineColor", QColor( Qt::GlobalColor::darkBlue ) ).toString());
@@ -71,67 +62,9 @@ MainWindow::~MainWindow()
 void MainWindow::finishCreate()
 {
     statusBar()->hide();
+    menuBar()->hide();
 
     stackedWidget = new QStackedWidget(centralWidget());
-
-    /// MENUBAR
-
-    QMenuBar *menubar = new QMenuBar(this);
-
-    QMenu *fileMenu = new QMenu(tr("File"), menubar);
-    QAction *closeAction = new QAction(tr("Quit"),menubar);
-    QObject::connect(closeAction, SIGNAL(triggered()), this, SLOT(close()));
-    fileMenu->addAction(closeAction);
-
-    QMenu *toolsMenu = new QMenu(tr("Tools"), menubar);
-    QMenu *resetMenu = new QMenu(tr("Reset Levels"), menubar);
-    QAction *resetEGAction = new QAction(tr("Eulerian Graphs..."),menubar);
-    QObject::connect( resetEGAction, SIGNAL(triggered()), this, SLOT( resetEulerGraphScore() ) );
-    resetMenu->addAction(resetEGAction);
-    QMenu *optionMenu = new QMenu(tr("Options"), menubar);
-    QMenu *styleMenu = new QMenu(tr("Select Theme"), menubar);
-    THselectDefaultStyleAction = new QAction("default",menubar);
-    QObject::connect(THselectDefaultStyleAction, SIGNAL(triggered()), this, SLOT(applyDefaultStyle()));
-    THselectDefaultStyleAction->setCheckable(true);
-    styleMenu->addAction(THselectDefaultStyleAction);
-    THselectDarkStyleAction = new QAction("dark",menubar);
-    QObject::connect(THselectDarkStyleAction, SIGNAL(triggered()), this, SLOT(applyDarkStyle()));
-    THselectDarkStyleAction->setCheckable(true);
-    styleMenu->addAction(THselectDarkStyleAction);
-    QAction * EGLineColorAction = new QAction(tr("Change Eulerian Graphs lines' color..."),menubar);
-    QObject::connect(EGLineColorAction, SIGNAL(triggered()), this, SLOT(chooseEGlineColor()));
-    optionMenu->addMenu(styleMenu);
-    optionMenu->addAction(EGLineColorAction);
-    toolsMenu->addMenu(resetMenu);
-    toolsMenu->addMenu(optionMenu);
-
-    QMenu *helpMenu = new QMenu(tr("Help"), menubar);
-    QAction * aboutAction = new QAction(tr("About..."),menubar);
-    QObject::connect(aboutAction, SIGNAL(triggered()), this, SLOT( onAbout()));
-    QAction * readmeAction = new QAction(tr("Open readme.txt..."),menubar);
-    QObject::connect(readmeAction, SIGNAL(triggered()), this, SLOT( onReadme()));
-    QMenu *linksMenu = new QMenu(tr("Links"), helpMenu);
-    QAction * dowloadLink1Action = new QAction(tr("Download page on gamejolt.com..."),linksMenu);
-    QObject::connect(dowloadLink1Action, SIGNAL(triggered()), this, SLOT( onDownloadLink1()));
-    linksMenu->addAction(dowloadLink1Action);
-    QAction * dowloadLink2Action = new QAction(tr("Download page on itch.io..."),linksMenu);
-    QObject::connect(dowloadLink2Action, SIGNAL(triggered()), this, SLOT( onDownloadLink2()));
-    linksMenu->addAction(dowloadLink2Action);
-    QAction * musicPageAction = new QAction(tr("Music portfolio of Yeo Sky on soundcloud.com..."),linksMenu);
-    QObject::connect(musicPageAction, SIGNAL(triggered()), this, SLOT( onMusicLink()));
-    linksMenu->addAction(musicPageAction);
-    QAction * sourceLinkAction = new QAction(tr("Sources page on github.com..."),linksMenu);
-    QObject::connect(sourceLinkAction, SIGNAL(triggered()), this, SLOT( onSourcesLink()));
-    linksMenu->addAction(sourceLinkAction);
-    helpMenu->addAction(aboutAction);
-    helpMenu->addAction(readmeAction);
-    helpMenu->addMenu(linksMenu);
-
-    menubar->addMenu(fileMenu);
-    menubar->addMenu(toolsMenu);
-    menubar->addMenu(helpMenu);
-
-    setMenuBar(menubar);
 
     /// HOME PAGE
 
@@ -141,7 +74,7 @@ void MainWindow::finishCreate()
     QPushButton *HPEulerGraphButton = new QPushButton(QIcon(":/img/EulerGraph.png"),"",HPmainWidget);
     HPEulerGraphButton->setIconSize(QSize(210,243));
     HPEulerGraphButton->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
-    QLabel *HPEulerGraphLabel = new QLabel(tr("Eulerian Graphs"),HPmainWidget);
+    HPEulerGraphLabel = new QLabel(tr("Eulerian Graphs"),HPmainWidget);
     HPEulerGraphLabel->setFont(QFont("Helvetica", 14,75));
     HPEulerGraphLabel->setAlignment(Qt::AlignCenter);
     HPEulerGraphLabel->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
@@ -155,7 +88,7 @@ void MainWindow::finishCreate()
     HPcomingSoonButton->setIconSize(QSize(210,243));
     HPcomingSoonButton->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
     HPcomingSoonButton->setEnabled(false);
-    QLabel *HPcomingSoonLabel = new QLabel(tr("coming soon..."),HPmainWidget);
+    HPcomingSoonLabel = new QLabel(tr("coming soon..."),HPmainWidget);
     HPcomingSoonLabel->setFont(QFont("Helvetica", 14,75));
     HPcomingSoonLabel->setAlignment(Qt::AlignCenter);
     HPcomingSoonLabel->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
@@ -165,13 +98,14 @@ void MainWindow::finishCreate()
     HPcomingSoonLayout->addSpacing(30);
     HPcomingSoonLayout->addWidget(HPcomingSoonLabel);
 
-    HPmainLayout->addItem(new QSpacerItem(40,40),0,0);
-    HPmainLayout->addLayout(HPEulerGraphLayout,0,1);
-    HPmainLayout->addItem(new QSpacerItem(40,40),0,2);
-    HPmainLayout->addLayout(HPcomingSoonLayout,0,3);
-    HPmainLayout->addItem(new QSpacerItem(40,40),0,4);
-    HPmainLayout->setColumnStretch(5,1);
-    HPmainLayout->setRowStretch(1,1);
+
+    HPmainLayout->addLayout(HPEulerGraphLayout,1,1);
+    HPmainLayout->addItem(new QSpacerItem(40,40),1,2);
+    HPmainLayout->addLayout(HPcomingSoonLayout,1,3);
+    HPmainLayout->setColumnStretch(0,1);
+    HPmainLayout->setColumnStretch(4,1);
+    HPmainLayout->setRowStretch(0,1);
+    HPmainLayout->setRowStretch(2,1);
 
     QObject::connect(HPEulerGraphButton, SIGNAL(released()), this, SLOT(goToEulerGraphPage()));
 
@@ -194,14 +128,11 @@ void MainWindow::finishCreate()
     EGeasyMode = new QCheckBox(tr("Click by Click Mode"),EGmainWidget);
     EGeasyMode->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
     EGeasyMode->setFont(QFont("Helvetica", 14,100));
-    QToolButton  *EGchangeLineColorButton = new QToolButton(HPmainWidget);
+    EGchangeLineColorButton = new QPushButton(tr("Change Eulerian Graphs lines' color..."),HPmainWidget);
     EGchangeLineColorButton->setFont(QFont("Helvetica", 11,45));
-    EGchangeLineColorButton->setDefaultAction(EGLineColorAction);
-    QToolButton  *EGresetButton = new QToolButton(HPmainWidget);
+    EGresetButton = new QPushButton(tr("Reset Levels"),HPmainWidget);
     EGresetButton->setFont(QFont("Helvetica", 11,45));
-    EGresetButton->setDefaultAction(resetEGAction);
-    EGresetButton->setText(tr("Reset Levels"));
-    QPushButton *EGhomeButton = new QPushButton(tr("Back to Menu"),EGmainWidget);
+    EGhomeButton = new QPushButton(tr("Back to Menu"),EGmainWidget);
     EGhomeButton->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
     EGhomeButton->setFont(QFont("Helvetica", 11,45));
 
@@ -229,6 +160,8 @@ void MainWindow::finishCreate()
 
     QObject::connect( &eulerGraph->m_scene, SIGNAL( stepedUp(uint,uint) ), this, SLOT( EGStepedUp(uint,uint) ) );
     QObject::connect( eulerGraph, SIGNAL( fullFinishedGraph() ), this, SLOT( setNextEulerGraph() ) );
+    QObject::connect(EGchangeLineColorButton, SIGNAL(released()), this, SLOT(chooseEGlineColor()));
+    QObject::connect(EGresetButton, SIGNAL(released()), this, SLOT(resetEulerGraphScore()));
     QObject::connect( EGhomeButton, SIGNAL( released() ), this, SLOT( goToHomehPage() ) );
     QObject::connect( EGeasyMode, SIGNAL( stateChanged(int) ), this, SLOT( changeEGClickMode(int) ) );
     QObject::connect( this, SIGNAL( EGlineColorRequest(QColor)) , &eulerGraph->m_scene, SLOT( changeLineColor(QColor) ) ) ;
@@ -239,6 +172,18 @@ void MainWindow::finishCreate()
     stackedWidget->addWidget(EGmainWidget);
     setCentralWidget(stackedWidget);
     stackedWidget->setCurrentIndex(0);
+
+    menuDialog = new MenuDialog(this);
+    QObject::connect( menuDialog, SIGNAL(changeToEnglishLanguage()), this, SLOT( changeToEnglishLanguage() ) );
+    QObject::connect( menuDialog, SIGNAL(changeToFrenchLanguage()), this, SLOT( changeToFrenchLanguage() ) );
+    QObject::connect( menuDialog, SIGNAL(EGopenLineColorSelection()), this, SLOT( chooseEGlineColor() ) );
+    QObject::connect( menuDialog, SIGNAL(EGresetLevels()), this, SLOT( resetEulerGraphScore() ) );
+    QObject::connect( menuDialog, SIGNAL(openAbout()), this, SLOT( onAbout() ) );
+    QObject::connect( menuDialog, SIGNAL(openSourcesLink()), this, SLOT( onSourcesLink() ) );
+    QObject::connect( menuDialog, SIGNAL(quitApp()), this, SLOT( close() ) );
+
+    congradulationPopup = new CongradulationDialog(this);
+
 }
 
 
@@ -250,9 +195,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
     // Save window settings in .ini file (geometry,...) in AppData
     QSettings settings;
-    settings.setValue("mainWindowGeometry", saveGeometry());
-    settings.setValue("mainWindowState", saveState());
-    settings.setValue("style", THstyleName);
     settings.setValue("EulerGraphLineColor", EGlineColor.name(QColor::HexArgb));
     settings.setValue("EulerGraphClickByClickMode", EGclickbyClickMode);
     QMainWindow::closeEvent(event);
@@ -262,27 +204,7 @@ void MainWindow::onAbout()
 {
     QMessageBox::about( this, tr("About"),
      tr("Developed in March 2021 by ")+QString("Amir Hammoutene (amir.hammoutene@gmail.com)")+QString(tr("\n\nMusic by Yeo Sky"))
-                        +QString(tr("\n\nVersion 1.5.0 - 26 November 2021")) );
-}
-
-void MainWindow::onReadme()
-{
-    QDesktopServices::openUrl(QUrl::fromLocalFile("readme.txt"));
-}
-
-void MainWindow::onDownloadLink1()
-{
-    QDesktopServices::openUrl(QUrl::fromLocalFile("https://gamejolt.com/games/riseofenigmas/665470"));
-}
-
-void MainWindow::onDownloadLink2()
-{
-    QDesktopServices::openUrl(QUrl::fromLocalFile("https://amirhammoutene.itch.io/rise-of-enigmas"));
-}
-
-void MainWindow::onMusicLink()
-{
-    QDesktopServices::openUrl(QUrl::fromLocalFile("https://soundcloud.com/yeos-house"));
+                        +QString(tr("\n\nVersion Steam 1.6.0 - 19 January 2022")) );
 }
 
 void MainWindow::onSourcesLink()
@@ -299,15 +221,9 @@ void MainWindow::goToHomehPage()
     musicPlayerWidget->stopMusic();
 }
 
-void MainWindow::applyStyleSheet(QString ssName)
+void MainWindow::applyStyleSheet()
 {
-    if(ssName == "default")
-    {
-        qApp->setStyleSheet(QString());
-        return;
-    }
-
-    QString fileName = ssName+".qss";
+    QString fileName = "dark.qss";
     if( !QFile::exists(fileName) )
         return;
     QFile styleFile(fileName);
@@ -318,21 +234,6 @@ void MainWindow::applyStyleSheet(QString ssName)
     qApp->setStyleSheet(style);
 }
 
-void MainWindow::applyDefaultStyle()
-{
-    THstyleName = "default";
-    applyStyleSheet(THstyleName);
-    THselectDefaultStyleAction->setChecked(true);
-    THselectDarkStyleAction->setChecked(false);
-}
-
-void MainWindow::applyDarkStyle()
-{
-    THstyleName = "dark";
-    applyStyleSheet(THstyleName);
-    THselectDarkStyleAction->setChecked(true);
-    THselectDefaultStyleAction->setChecked(false);
-}
 
 
 void MainWindow::chooseEGlineColor()
@@ -370,6 +271,7 @@ void MainWindow::EGStepedUp(uint step, uint total)
     if( !EulerGraphStageData.contains( EGscore+1 ))
     {
         EGstateLabel->setText(tr("You finished all levels, good job!"));
+        congradulationPopup->show();
         return;
     }
     QString text;
@@ -398,6 +300,7 @@ void MainWindow::goToEulerGraphPage()
             EGtimeChallengeWidget->finishChallenge();
         eulerGraph->setGraph(0, QPair< QList<Vertex> , QList<Edge> >());
         EGstateLabel->setText(tr("You finished all levels, good job!"));
+        congradulationPopup->show();
     }
     if(!musicPlayerWidget->dontDisturbPlaying)
     {
@@ -435,6 +338,14 @@ void MainWindow::resetEulerGraphScore()
 
 void MainWindow::keyPressEvent(QKeyEvent *event)
 {
+    //Menu
+    if(event->key() ==  Qt::Key_Escape)
+    {
+        if(menuDialog->isHidden())
+            menuDialog->show();
+        else
+            menuDialog->hide();
+    }
     // For start/stop Eulerian Graphs Time Challenge (Ctrl+SpaceBar)
     if(stackedWidget->currentIndex() == 1)
     {
@@ -442,6 +353,41 @@ void MainWindow::keyPressEvent(QKeyEvent *event)
             EGtimeChallengeWidget->startOrStopChrono();
     }
     QMainWindow::keyReleaseEvent(event);
+}
+
+void MainWindow::changeEvent(QEvent *event)
+{
+    if(event->type() == QEvent::LanguageChange)
+    {
+       ui->retranslateUi(this);
+       HPEulerGraphLabel->setText(tr("Eulerian Graphs"));
+       HPcomingSoonLabel->setText(tr("coming soon..."));
+       EGeasyMode->setText(tr("Click by Click Mode"));
+       EGchangeLineColorButton->setText(tr("Change Eulerian Graphs lines' color..."));
+       EGresetButton->setText(tr("Reset Levels"));
+       EGhomeButton->setText(tr("Back to Menu"));
+       if(stackedWidget->currentIndex() == 1)
+        goToEulerGraphPage();
+    }
+    QMainWindow::changeEvent(event);
+}
+
+void MainWindow::changeToEnglishLanguage()
+{
+    if(translator->load(QString("RiseOfEnigmas_en")))
+        qApp->installTranslator(translator);
+
+    if(baseTranslator->load(QString("qtbase_en")))
+        qApp->installTranslator(baseTranslator);
+}
+
+void MainWindow::changeToFrenchLanguage()
+{
+    if(translator->load(QString("RiseOfEnigmas_fr")))
+        qApp->installTranslator(translator);
+
+    if(baseTranslator->load(QString("qtbase_fr")))
+        qApp->installTranslator(baseTranslator);
 }
 
 void MainWindow::constructData()

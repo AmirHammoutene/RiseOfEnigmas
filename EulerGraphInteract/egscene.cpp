@@ -25,7 +25,10 @@ EGScene::~EGScene()
     qDeleteAll(m_lineList);
     m_lineList.clear();
     if( tempDrawingLine!= nullptr)
+    {
         delete tempDrawingLine;
+        tempDrawingLine = nullptr;
+    }
 }
 
 void EGScene::appendPointShape(AdvancedPointShape *point)

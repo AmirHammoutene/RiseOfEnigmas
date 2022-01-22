@@ -23,6 +23,8 @@ public:
 public slots:
     void showAndLoad();
     void sendScoreRequestFinished(QNetworkReply *reply);
+protected:
+    void changeEvent(QEvent* event) override;
 
 private:
     Ui::EulerGraphsTimeChallengeRecordsDialog *ui;

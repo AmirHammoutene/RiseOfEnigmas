@@ -47,7 +47,7 @@
        <item>
         <widget class="QLabel" name="label">
          <property name="text">
-          <string>Your time score will be stored in gamejolt.com</string>
+          <string>Your time score will be stored online</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -146,7 +146,6 @@
          <property name="font">
           <font>
            <pointsize>14</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>

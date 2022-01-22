@@ -2,6 +2,13 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="fr_FR">
 <context>
+    <name>CongradulationDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation>Dialog</translation>
+    </message>
+</context>
+<context>
     <name>EulerGraphsTimeChallengeRecordsDialog</name>
     <message>
         <source>Dialog</source>
@@ -58,7 +65,7 @@ Message d&apos;erreur :
     </message>
     <message>
         <source>Your time score will be stored in gamejolt.com</source>
-        <translation>Votre score de temps sera stocké chez gamjolt.com</translation>
+        <translation type="vanished">Votre score de temps sera stocké chez gamjolt.com</translation>
     </message>
     <message>
         <source>Pseudonym for this score</source>
@@ -138,6 +145,10 @@ Message d&apos;erreur :
         <translation>Erreur de parsing URL HTTP : Le pseudonyme entré semble avoir un caractère inattendu.
 </translation>
     </message>
+    <message>
+        <source>Your time score will be stored online</source>
+        <translation>Votre score de temps sera stocké en ligne</translation>
+    </message>
 </context>
 <context>
     <name>EulerGraphsTimeChallengeWidget</name>
@@ -147,7 +158,7 @@ Message d&apos;erreur :
     </message>
     <message>
         <source>If you send your result after the challenge completed, it will be stored on gamejolt.com</source>
-        <translation>Si vous envoyez votre resultat après le défi complété, cela va être stocké sur gamejolt.com</translation>
+        <translation type="vanished">Si vous envoyez votre resultat après le défi complété, cela va être stocké sur gamejolt.com</translation>
     </message>
     <message>
         <source>Challenge gamers online on time to finish all levels in a row
@@ -180,6 +191,10 @@ et lorsque vous serez prêt, le Défi en ligne de Temps vous attend !</translati
     <message>
         <source>Go to the Challenge →</source>
         <translation>Aller au Défi →</translation>
+    </message>
+    <message>
+        <source>If you send your result after the challenge completed, it will be stored online</source>
+        <translation>Si vous envoyez votre resultat après le défi complété, cela va être stocké en ligne</translation>
     </message>
 </context>
 <context>
@@ -249,23 +264,23 @@ Version 1.0 - 20 Mars 2021</translation>
     </message>
     <message>
         <source>Quit</source>
-        <translation>Quitter</translation>
+        <translation type="vanished">Quitter</translation>
     </message>
     <message>
         <source>File</source>
-        <translation>Fichier</translation>
+        <translation type="vanished">Fichier</translation>
     </message>
     <message>
         <source>About...</source>
-        <translation>À propos...</translation>
+        <translation type="vanished">À propos...</translation>
     </message>
     <message>
         <source>Help</source>
-        <translation>Aide</translation>
+        <translation type="vanished">Aide</translation>
     </message>
     <message>
         <source>Eulerian Graphs...</source>
-        <translation>Graphes Eulériens...</translation>
+        <translation type="vanished">Graphes Eulériens...</translation>
     </message>
     <message>
         <source>Eulerian Graphs lines&apos; color...</source>
@@ -273,7 +288,7 @@ Version 1.0 - 20 Mars 2021</translation>
     </message>
     <message>
         <source>Tools</source>
-        <translation>Outils</translation>
+        <translation type="vanished">Outils</translation>
     </message>
     <message>
         <source>Reset Levels</source>
@@ -281,11 +296,11 @@ Version 1.0 - 20 Mars 2021</translation>
     </message>
     <message>
         <source>Select Theme</source>
-        <translation>Sélectionner un Thème</translation>
+        <translation type="vanished">Sélectionner un Thème</translation>
     </message>
     <message>
         <source>Options</source>
-        <translation>Préférences</translation>
+        <translation type="vanished">Préférences</translation>
     </message>
     <message>
         <source>Eulerian Graphs</source>
@@ -309,19 +324,19 @@ Version 1.0 - 20 Mars 2021</translation>
     </message>
     <message>
         <source>Open readme.txt...</source>
-        <translation>Ouvrir readme.txt...</translation>
+        <translation type="vanished">Ouvrir readme.txt...</translation>
     </message>
     <message>
         <source>Links</source>
-        <translation>Liens</translation>
+        <translation type="vanished">Liens</translation>
     </message>
     <message>
         <source>Download page on itch.io...</source>
-        <translation>Page de téléchargement sur itch.io...</translation>
+        <translation type="vanished">Page de téléchargement sur itch.io...</translation>
     </message>
     <message>
         <source>Sources page on github.com...</source>
-        <translation>Page des sources sur github.com...</translation>
+        <translation type="vanished">Page des sources sur github.com...</translation>
     </message>
     <message>
         <source>
@@ -345,7 +360,7 @@ Version 1.3 - 20 Novembre 2021</translation>
     </message>
     <message>
         <source>Download page on gamejolt.com...</source>
-        <translation>Page de téléchargement sur gamejolt.com...</translation>
+        <translation type="vanished">Page de téléchargement sur gamejolt.com...</translation>
     </message>
     <message>
         <source>
@@ -383,7 +398,7 @@ Musique par Yeo Sky</translation>
         <source>
 
 Version 1.5.0 - 26 November 2021</source>
-        <translation>
+        <translation type="vanished">
 
 Version 1.5.0 - 26 Novembre 2021</translation>
     </message>
@@ -395,7 +410,46 @@ Niveau </translation>
     </message>
     <message>
         <source>Music portfolio of Yeo Sky on soundcloud.com...</source>
-        <translation>Portfolio musical de Yeo Sky sur soundcloud.com...</translation>
+        <translation type="vanished">Portfolio musical de Yeo Sky sur soundcloud.com...</translation>
+    </message>
+    <message>
+        <source>
+
+Version Steam 1.6.0 - 19 January 2022</source>
+        <translation>
+
+Version Steam 1.6.0 - 19 Janvier 2022</translation>
+    </message>
+</context>
+<context>
+    <name>MenuDialog</name>
+    <message>
+        <source>Dialog</source>
+        <translation>Dialog</translation>
+    </message>
+    <message>
+        <source>Choose lines&apos; color</source>
+        <translation>Choisir la couleur des lignes</translation>
+    </message>
+    <message>
+        <source>Reset Levels</source>
+        <translation>Réinitialiser les niveaux</translation>
+    </message>
+    <message>
+        <source>Quit</source>
+        <translation>Quitter</translation>
+    </message>
+    <message>
+        <source>Eulerian Graphs</source>
+        <translation>Graphes Eulériens</translation>
+    </message>
+    <message>
+        <source>About</source>
+        <translation>À propos</translation>
+    </message>
+    <message>
+        <source>Sources page on github.com...</source>
+        <translation>Page des sources sur github.com...</translation>
     </message>
 </context>
 <context>

@@ -16,24 +16,32 @@ include($$PWD/EulerGraphInteract/EulerGraphInteract.pri)
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
+    widgets/congradulationdialog.cpp \
+    widgets/congradulationlabel.cpp \
     widgets/eulergraphstimechallengerecordsdialog.cpp \
     widgets/eulergraphstimechallengesendscoredialog.cpp \
     widgets/eulergraphstimechallengewidget.cpp \
+    widgets/menudialog.cpp \
     widgets/musicplayerwidget.cpp
 
 HEADERS += \
     PrivateData.h \
     mainwindow.h \
+    widgets/congradulationdialog.h \
+    widgets/congradulationlabel.h \
     widgets/eulergraphstimechallengerecordsdialog.h \
     widgets/eulergraphstimechallengesendscoredialog.h \
     widgets/eulergraphstimechallengewidget.h \
+    widgets/menudialog.h \
     widgets/musicplayerwidget.h
 
 FORMS += \
     mainwindow.ui \
+    widgets/congradulationdialog.ui \
     widgets/eulergraphstimechallengerecordsdialog.ui \
     widgets/eulergraphstimechallengesendscoredialog.ui \
     widgets/eulergraphstimechallengewidget.ui \
+    widgets/menudialog.ui \
     widgets/musicplayerwidget.ui
 
 RESOURCES += \
@@ -42,4 +50,5 @@ RESOURCES += \
 RC_FILE = resource.rc
 
 TRANSLATIONS += \
-    RiseOfEnigmas_fr.ts
+    RiseOfEnigmas_fr.ts\
+    RiseOfEnigmas_en.ts

@@ -41,12 +41,11 @@
            <property name="font">
             <font>
              <pointsize>12</pointsize>
-             <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="toolTip">
-            <string>If you send your result after the challenge completed, it will be stored on gamejolt.com</string>
+            <string>If you send your result after the challenge completed, it will be stored online</string>
            </property>
            <property name="text">
             <string>You can practice on those Eulerian Graphs here
@@ -133,12 +132,11 @@ and when you'll be ready, the Online Time Challenge is waiting for you!</string>
            <property name="font">
             <font>
              <pointsize>12</pointsize>
-             <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>
            <property name="toolTip">
-            <string>If you send your result after the challenge completed, it will be stored on gamejolt.com</string>
+            <string>If you send your result after the challenge completed, it will be stored online</string>
            </property>
            <property name="text">
             <string>Challenge gamers online on time to finish all levels in a row
@@ -173,12 +171,11 @@ Press Ctrl+SpaceBar or click on 'Start Challenge'</string>
            <property name="font">
             <font>
              <pointsize>18</pointsize>
-             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
            <property name="toolTip">
-            <string>If you send your result after the challenge completed, it will be stored on gamejolt.com</string>
+            <string>If you send your result after the challenge completed, it will be stored online</string>
            </property>
            <property name="text">
             <string>Start Challenge</string>
@@ -203,7 +200,6 @@ Press Ctrl+SpaceBar or click on 'Start Challenge'</string>
            <property name="font">
             <font>
              <pointsize>16</pointsize>
-             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
@@ -223,12 +219,11 @@ Press Ctrl+SpaceBar or click on 'Start Challenge'</string>
            <property name="font">
             <font>
              <pointsize>15</pointsize>
-             <weight>75</weight>
              <bold>true</bold>
             </font>
            </property>
            <property name="toolTip">
-            <string>If you send your result after the challenge completed, it will be stored on gamejolt.com</string>
+            <string>If you send your result after the challenge completed, it will be stored online</string>
            </property>
            <property name="text">
             <string>Send your time score online...</string>
@@ -259,7 +254,6 @@ Press Ctrl+SpaceBar or click on 'Start Challenge'</string>
            <property name="font">
             <font>
              <pointsize>15</pointsize>
-             <weight>50</weight>
              <bold>false</bold>
             </font>
            </property>

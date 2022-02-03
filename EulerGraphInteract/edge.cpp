@@ -22,10 +22,8 @@ Edge &Edge::operator=(const Edge &other)
 
 bool Edge::operator==(const Edge &other) const
 {
-    Edge alter = alternativeEdge();
-
     if( ((other.m_theOne == m_theOne) && (other.m_theOther == m_theOther))
-    || ((other.m_theOne == alter.m_theOne) && (other.m_theOther == alter.m_theOther)) )
+    || ((other.m_theOne == m_theOther) && (other.m_theOther == m_theOne)) )
         return true;
 
     return false;
@@ -34,9 +32,4 @@ bool Edge::operator==(const Edge &other) const
 bool Edge::operator!=(const Edge &other) const
 {
     return !( (*this) == other);
-}
-
-Edge Edge::alternativeEdge() const
-{
-    return Edge(m_theOther, m_theOne);
 }

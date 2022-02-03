@@ -15,7 +15,6 @@ public:
     Edge &operator=(const Edge &other);
     bool operator==(const Edge &other) const;
     bool operator!=(const Edge &other) const;
-    Edge alternativeEdge() const;
 };
 
 #endif // EDGE_H

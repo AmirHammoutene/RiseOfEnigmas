@@ -21,8 +21,8 @@ EdgeShape::~EdgeShape()
 
 bool EdgeShape::operator==(const EdgeShape &other) const
 {
-    if( (other.m_Ox == m_Ox && other.m_Oy != m_Oy && other.m_Ex != m_Ex && other.m_Ey != m_Ey)
-        || (other.m_Ex == m_Ox && other.m_Ey != m_Oy && other.m_Ox != m_Ex && other.m_Oy != m_Ey) )
+    if( (other.m_Ox == m_Ox && other.m_Oy == m_Oy && other.m_Ex == m_Ex && other.m_Ey == m_Ey)
+        || (other.m_Ex == m_Ox && other.m_Ey == m_Oy && other.m_Ox == m_Ex && other.m_Oy == m_Ey) )
         return true;
 
     return false;

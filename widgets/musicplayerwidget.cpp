@@ -118,7 +118,11 @@ void MusicPlayerWidget::onCurrentDeviceChanged(int index)
 void MusicPlayerWidget::onSliderPositionChanged(int val)
 {
     if(musicPlayer->error() == QMediaPlayer::NoError)
+    {
+        QObject::disconnect(musicPlayer, SIGNAL(positionChanged(qint64)), this, SLOT(onPositionChanged(qint64)));
         musicPlayer->setPosition((qint64)val*musicPlayer->duration()/10000);
+        QObject::connect(musicPlayer, SIGNAL(positionChanged(qint64)), this, SLOT(onPositionChanged(qint64)));
+    }
 }
 
 void MusicPlayerWidget::onSliderVolumeChanged(int val)

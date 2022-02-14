@@ -23,6 +23,9 @@ signals:
     void resetEulerGraphScoreRequest();
     void chooseEGlineColorRequest();
     void easyModeStateChanged(int);
+    void translateInstructionsRequest();
+protected:
+    void changeEvent(QEvent* event) override;
 private:
     Ui::EulerGraphsInfoAndOptionsWidget *ui;
 };

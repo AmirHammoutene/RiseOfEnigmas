@@ -141,6 +141,7 @@ void MainWindow::finishCreate()
     QObject::connect( EGinfoOptionsWidget, SIGNAL(resetEulerGraphScoreRequest()), this, SLOT(resetEulerGraphScore()));
     QObject::connect( EGinfoOptionsWidget, SIGNAL( homePageRequest() ), this, SLOT( goToHomehPage() ) );
     QObject::connect( EGinfoOptionsWidget, SIGNAL( easyModeStateChanged(int) ), this, SLOT( changeEGClickMode(int) ) );
+    QObject::connect( EGinfoOptionsWidget, SIGNAL( translateInstructionsRequest() ), this, SLOT( translateInstructions() ) );
     QObject::connect( this, SIGNAL( EGlineColorRequest(QColor)) , &eulerGraph->m_scene, SLOT( changeLineColor(QColor) ) ) ;
     QObject::connect( EGtimeChallengeWidget, SIGNAL( startChallengeRequest()) , this, SLOT( EGstartChallenge() ) ) ;
 
@@ -345,10 +346,15 @@ void MainWindow::changeEvent(QEvent *event)
        ui->retranslateUi(this);
        HPEulerGraphLabel->setText(tr("Eulerian Graphs"));
        HPcomingSoonLabel->setText(tr("coming soon..."));
-       if(stackedWidget->currentIndex() == 1)
-        goToEulerGraphPage();
     }
     QMainWindow::changeEvent(event);
+}
+
+void MainWindow::translateInstructions()
+{
+
+    if(stackedWidget->currentIndex() == 1)
+        goToEulerGraphPage();
 }
 
 void MainWindow::changeToEnglishLanguage()

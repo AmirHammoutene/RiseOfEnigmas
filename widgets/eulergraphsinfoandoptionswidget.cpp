@@ -27,3 +27,13 @@ void EulerGraphsInfoAndOptionsWidget::setInstructionsText(const QString &str)
 {
     ui->EGstateLabel->setText(str);
 }
+
+void EulerGraphsInfoAndOptionsWidget::changeEvent(QEvent *event)
+{
+    if(event->type() == QEvent::LanguageChange)
+    {
+       ui->retranslateUi(this);
+       emit translateInstructionsRequest();
+    }
+    QWidget::changeEvent(event);
+}

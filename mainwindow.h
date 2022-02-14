@@ -73,6 +73,7 @@ public slots:
     void EGStepedUp(uint step, uint total);
     void setNextEulerGraph();
     void EGstartChallenge();
+    void translateInstructions();
 
 signals:
     void EGlineColorRequest(QColor color);

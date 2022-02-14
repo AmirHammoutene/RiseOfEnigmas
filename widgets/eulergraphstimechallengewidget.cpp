@@ -81,7 +81,7 @@ void EulerGraphsTimeChallengeWidget::showSendScoreDialog()
 
 void EulerGraphsTimeChallengeWidget::goToChallengePage()
 {
-    ui->stackedWidget->setCurrentIndex(1);
+    ui->eulerGraphsTimeChallengeStackedWidget->setCurrentIndex(1);
 }
 
 void EulerGraphsTimeChallengeWidget::changeEvent(QEvent *event)

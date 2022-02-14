@@ -18,6 +18,7 @@ SOURCES += \
     mainwindow.cpp \
     widgets/congradulationdialog.cpp \
     widgets/congradulationlabel.cpp \
+    widgets/eulergraphsinfoandoptionswidget.cpp \
     widgets/eulergraphstimechallengerecordsdialog.cpp \
     widgets/eulergraphstimechallengesendscoredialog.cpp \
     widgets/eulergraphstimechallengewidget.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     mainwindow.h \
     widgets/congradulationdialog.h \
     widgets/congradulationlabel.h \
+    widgets/eulergraphsinfoandoptionswidget.h \
     widgets/eulergraphstimechallengerecordsdialog.h \
     widgets/eulergraphstimechallengesendscoredialog.h \
     widgets/eulergraphstimechallengewidget.h \
@@ -38,6 +40,7 @@ HEADERS += \
 FORMS += \
     mainwindow.ui \
     widgets/congradulationdialog.ui \
+    widgets/eulergraphsinfoandoptionswidget.ui \
     widgets/eulergraphstimechallengerecordsdialog.ui \
     widgets/eulergraphstimechallengesendscoredialog.ui \
     widgets/eulergraphstimechallengewidget.ui \

@@ -8,6 +8,59 @@ QWidget
 
 }
 
+QWidget#musicPlayerMainWidget
+{
+	background-color: QLinearGradient(x1:0, y1:0, x2:0, y2:1, stop: 0 #3a3a3a,stop: 0.3 #4a4d52, stop: 0.7 #4a4d52, stop: 1 #3a3a3a) ;
+	color: #fff;
+	selection-background-color: #787878;
+	selection-color: #000;
+
+}
+
+QWidget#musicPlayerMainWidget QWidget
+{
+	background-color: rgba(0,0,0,0) ;
+	color: #fff;
+	selection-background-color: #787878;
+	selection-color: #000;
+}
+
+QWidget#eulerGraphsTimeChallengeStackedWidget > QWidget
+{
+	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 #7d7d7d,stop:1 #616161);
+	color: #fff;
+	selection-background-color: #787878;
+	selection-color: #000;
+
+}
+
+QWidget#eulerGraphsTimeChallengeStackedWidget QLabel
+{
+	background-color: rgba(0,0,0,0) ;
+	color: #fff;
+	selection-background-color: #787878;
+	selection-color: #000;
+
+}
+
+QWidget#EGInfoAndOptionsMainWidget
+{
+	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 #7d7d7d,stop:1 #616161);
+	color: #fff;
+	selection-background-color: #787878;
+	selection-color: #000;
+
+}
+
+QWidget#EGInfoAndOptionsMainWidget QLabel
+{
+	background-color: rgba(0,0,0,0) ;
+	color: #fff;
+	selection-background-color: #787878;
+	selection-color: #000;
+
+}
+
 
 /*-----QLabel-----*/
 QLabel
@@ -16,7 +69,6 @@ QLabel
 	color: #fff;
 
 }
-
 
 /*-----QMenuBar-----*/
 QMenuBar 
@@ -149,7 +201,7 @@ QToolButton:checked
 /*-----QPushButton-----*/
 QPushButton
 {
-	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(84, 84, 84, 255),stop:1 rgba(59, 59, 59, 255));
+	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(102, 102, 102, 255),stop:1 rgba(80, 80, 80, 255));
 	color: #ffffff;
 	border-style: solid;
 	border-width: 1px;
@@ -168,7 +220,6 @@ QPushButton::flat
 
 }
 
-
 QPushButton::disabled
 {
 	background-color: #404040;
@@ -180,15 +231,15 @@ QPushButton::disabled
 
 QPushButton::pressed
 {
-	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(74, 74, 74, 255),stop:1 rgba(49, 49, 49, 255));
-	border: 1px solid #787878;
+	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(110, 110, 110, 255),stop:1 rgba(90, 90, 90, 255));
+	border: 1px solid #4d2d2d;
 
 }
 
 
 QPushButton::checked
 {
-	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(74, 74, 74, 255),stop:1 rgba(49, 49, 49, 255));
+	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(110, 110, 110, 255),stop:1 rgba(90, 90, 90, 255));
 	border: 1px solid #222;
 
 }
@@ -279,7 +330,7 @@ QTabBar::tab:!selected:hover
 /*-----QComboBox-----*/
 QComboBox
 {
-    background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(84, 84, 84, 255),stop:1 rgba(59, 59, 59, 255));
+    background-color: rgba(0, 0, 0, 0);
     border: 1px solid #000;
     color: #ffffff;
     height: 20px;
@@ -306,10 +357,10 @@ QComboBox:on
 
 QComboBox QAbstractItemView
 {
-    background-color: #383838;
+    background-color: rgba(0, 0, 0, 0);
     color: #ffffff;
     border: 1px solid black;
-    selection-background-color: #787878;
+    selection-background-color: #646e7d;
     outline: 0;
 
 }
@@ -317,7 +368,7 @@ QComboBox QAbstractItemView
 
 QComboBox::drop-down
 {
-	background-color: qlineargradient(spread:repeat, x1:1, y1:0, x2:1, y2:1, stop:0 rgba(57, 57, 57, 255),stop:1 rgba(50, 50, 50, 255));
+	background-color: #4a4d52;
     subcontrol-origin: padding;
     subcontrol-position: top right;
     width: 15px;
@@ -724,21 +775,21 @@ QSlider::groove:horizontal
 
 QSlider::sub-page:horizontal 
 {
-	background-color: #787878;
+	background-color: #5e6773;
 
 }
 
 
 QSlider::add-page:horizontal 
 {
-	background-color: #131313;
+	background-color: #242424;
 
 }
 
 
 QSlider::handle:horizontal 
 {
-	background-color: #787878;
+	background-color: #20334f;
 	width: 14px;
 	margin-top: -6px;
 	margin-bottom: -6px;
@@ -749,7 +800,7 @@ QSlider::handle:horizontal
 
 QSlider::handle:horizontal:hover 
 {
-	background-color: #787878;
+	background-color: #4f2020;
 	border-radius: 6px;
 
 }

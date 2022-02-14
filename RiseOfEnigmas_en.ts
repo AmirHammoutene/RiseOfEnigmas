@@ -9,6 +9,29 @@
     </message>
 </context>
 <context>
+    <name>EulerGraphsInfoAndOptionsWidget</name>
+    <message>
+        <source>Form</source>
+        <translation>Form</translation>
+    </message>
+    <message>
+        <source>Click by Click Mode</source>
+        <translation>Click by Click Mode</translation>
+    </message>
+    <message>
+        <source>Change Eulerian Graphs lines&apos; color...</source>
+        <translation>Change Eulerian Graphs lines&apos; color...</translation>
+    </message>
+    <message>
+        <source>Reset Levels</source>
+        <translation>Reset Levels</translation>
+    </message>
+    <message>
+        <source>Back to Menu</source>
+        <translation>Back to Menu</translation>
+    </message>
+</context>
+<context>
     <name>EulerGraphsTimeChallengeRecordsDialog</name>
     <message>
         <source>Dialog</source>
@@ -203,19 +226,19 @@ Press Ctrl+SpaceBar or click on &apos;Start Challenge&apos;</translation>
     </message>
     <message>
         <source>Click by Click Mode</source>
-        <translation>Click by Click Mode</translation>
+        <translation type="vanished">Click by Click Mode</translation>
     </message>
     <message>
         <source>Change Eulerian Graphs lines&apos; color...</source>
-        <translation>Change Eulerian Graphs lines&apos; color...</translation>
+        <translation type="vanished">Change Eulerian Graphs lines&apos; color...</translation>
     </message>
     <message>
         <source>Reset Levels</source>
-        <translation>Reset Levels</translation>
+        <translation type="vanished">Reset Levels</translation>
     </message>
     <message>
         <source>Back to Menu</source>
-        <translation>Back to Menu</translation>
+        <translation type="vanished">Back to Menu</translation>
     </message>
     <message>
         <source>About</source>
@@ -283,9 +306,17 @@ Level </translation>
         <source>
 
 Version Steam 1.6.0 - 19 January 2022</source>
-        <translation>
+        <translation type="vanished">
 
 Version Steam 1.6.0 - 19 January 2022</translation>
+    </message>
+    <message>
+        <source>
+
+Version Steam 1.6.1 - 14 February 2022</source>
+        <translation>
+
+Version Steam 1.6.1 - 14 February 2022</translation>
     </message>
 </context>
 <context>

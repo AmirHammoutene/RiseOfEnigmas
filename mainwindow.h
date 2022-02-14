@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QWidget>
 #include <QStackedWidget>
 #include <QLabel>
 #include <QCheckBox>
@@ -13,6 +14,7 @@
 #include "widgets/musicplayerwidget.h"
 #include "widgets/menudialog.h"
 #include "widgets/congradulationdialog.h"
+#include "widgets/eulergraphsinfoandoptionswidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,9 +32,8 @@ public:
     ~MainWindow();
     QStackedWidget *stackedWidget;
     EulerGraphInteract *eulerGraph; // Eulerian Graphs module
-    QLabel *EGstateLabel;// EG for "Euler Graphs"
-    QCheckBox *EGeasyMode;
-    EulerGraphsTimeChallengeWidget *EGtimeChallengeWidget;
+    EulerGraphsTimeChallengeWidget *EGtimeChallengeWidget;// EG for "Euler Graphs"
+    EulerGraphsInfoAndOptionsWidget *EGinfoOptionsWidget;
     QHash< uint, QPair< QList<Vertex> , QList<Edge> > > EulerGraphStageData; // Eulerian Graphs vertexes and edges are hard stored
     uint EGscore;
     bool EGclickbyClickMode;
@@ -45,9 +46,6 @@ public:
 
     QLabel *HPEulerGraphLabel;
     QLabel *HPcomingSoonLabel;
-    QPushButton  *EGchangeLineColorButton;
-    QPushButton  *EGresetButton;
-    QPushButton *EGhomeButton;
 
     CongradulationDialog *congradulationPopup;
 

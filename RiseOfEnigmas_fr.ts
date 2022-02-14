@@ -9,6 +9,29 @@
     </message>
 </context>
 <context>
+    <name>EulerGraphsInfoAndOptionsWidget</name>
+    <message>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Click by Click Mode</source>
+        <translation>Mode Clic par Clic</translation>
+    </message>
+    <message>
+        <source>Change Eulerian Graphs lines&apos; color...</source>
+        <translation>Changer la couleur des lignes des Graphes Eulériens...</translation>
+    </message>
+    <message>
+        <source>Reset Levels</source>
+        <translation>Réinitialiser les niveaux</translation>
+    </message>
+    <message>
+        <source>Back to Menu</source>
+        <translation>Retour au menu</translation>
+    </message>
+</context>
+<context>
     <name>EulerGraphsTimeChallengeRecordsDialog</name>
     <message>
         <source>Dialog</source>
@@ -292,7 +315,7 @@ Version 1.0 - 20 Mars 2021</translation>
     </message>
     <message>
         <source>Reset Levels</source>
-        <translation>Réinitialiser les niveaux</translation>
+        <translation type="vanished">Réinitialiser les niveaux</translation>
     </message>
     <message>
         <source>Select Theme</source>
@@ -312,7 +335,7 @@ Version 1.0 - 20 Mars 2021</translation>
     </message>
     <message>
         <source>Click by Click Mode</source>
-        <translation>Mode Clic par Clic</translation>
+        <translation type="vanished">Mode Clic par Clic</translation>
     </message>
     <message>
         <source>coming soon</source>
@@ -320,7 +343,7 @@ Version 1.0 - 20 Mars 2021</translation>
     </message>
     <message>
         <source>Back to Menu</source>
-        <translation>Retour au menu</translation>
+        <translation type="vanished">Retour au menu</translation>
     </message>
     <message>
         <source>Open readme.txt...</source>
@@ -372,7 +395,7 @@ Version 1.4 - 23 Novembre 2021</translation>
     </message>
     <message>
         <source>Change Eulerian Graphs lines&apos; color...</source>
-        <translation>Changer la couleur des lignes des Graphes Eulériens...</translation>
+        <translation type="vanished">Changer la couleur des lignes des Graphes Eulériens...</translation>
     </message>
     <message>
         <source>
@@ -416,9 +439,17 @@ Niveau </translation>
         <source>
 
 Version Steam 1.6.0 - 19 January 2022</source>
-        <translation>
+        <translation type="vanished">
 
 Version Steam 1.6.0 - 19 Janvier 2022</translation>
+    </message>
+    <message>
+        <source>
+
+Version Steam 1.6.1 - 14 February 2022</source>
+        <translation>
+
+Version Steam 1.6.1 - 14 Février 2022</translation>
     </message>
 </context>
 <context>

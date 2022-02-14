@@ -34,12 +34,10 @@ void EulerGraphsTimeChallengeRecordsDialog::loadRecords()
 {
     QNetworkAccessManager *networkManager = new QNetworkAccessManager(this);
 
-    QString game_id = "665470";
     QString limit = "100";
-    QString table_id = "674033";
 
     QUrl urlQueryPart("http://api.gamejolt.com/api/game/v1_2/scores/"
-        "?game_id="+game_id+"&table_id="+table_id+"&limit="+limit);
+        "?game_id="+PrivateData::GameJolt_GameId+"&table_id="+PrivateData::GameJolt_TableId+"&limit="+limit);
 
     if(!urlQueryPart.isValid())
     {

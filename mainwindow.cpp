@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
     emit EGlineColorRequest(EGlineColor);
 
     EGclickbyClickMode = settings.value("EulerGraphClickByClickMode", false).toBool();
-    EGeasyMode->setChecked(EGclickbyClickMode);
+    EGinfoOptionsWidget->setClickByClickModeChecked(EGclickbyClickMode);
     changeEGClickMode(EGclickbyClickMode);
 
     // Load game scores from registry
@@ -120,21 +120,7 @@ void MainWindow::finishCreate()
 
     eulerGraph = new EulerGraphInteract(EGmainWidget);
 
-    EGstateLabel = new QLabel(EGmainWidget);
-    EGstateLabel->setFont(QFont("Helvetica", 14,75));
-    EGstateLabel->setWordWrap(true);
-    EGstateLabel->setSizePolicy(QSizePolicy::Policy::MinimumExpanding,QSizePolicy::Policy::Minimum);
-    EGstateLabel->setMinimumWidth(500);
-    EGeasyMode = new QCheckBox(tr("Click by Click Mode"),EGmainWidget);
-    EGeasyMode->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
-    EGeasyMode->setFont(QFont("Helvetica", 14,100));
-    EGchangeLineColorButton = new QPushButton(tr("Change Eulerian Graphs lines' color..."),HPmainWidget);
-    EGchangeLineColorButton->setFont(QFont("Helvetica", 11,45));
-    EGresetButton = new QPushButton(tr("Reset Levels"),HPmainWidget);
-    EGresetButton->setFont(QFont("Helvetica", 11,45));
-    EGhomeButton = new QPushButton(tr("Back to Menu"),EGmainWidget);
-    EGhomeButton->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
-    EGhomeButton->setFont(QFont("Helvetica", 11,45));
+    EGinfoOptionsWidget = new EulerGraphsInfoAndOptionsWidget(EGmainWidget);
 
     QGridLayout *EGmainLayout = new QGridLayout(EGmainWidget);
     EGmainLayout->addWidget(musicPlayerWidget, 0, 1);
@@ -144,26 +130,17 @@ void MainWindow::finishCreate()
     EGmainLayout->addWidget(eulerGraph,2,1);
     EGmainLayout->addItem(new QSpacerItem(10,10),3,1);
 
-    QHBoxLayout *EGtextAndButtonLayout = new QHBoxLayout();
-    EGtextAndButtonLayout->addWidget(EGstateLabel);
-    EGtextAndButtonLayout->addStretch(0);
-    EGtextAndButtonLayout->addWidget(EGeasyMode);
-    EGtextAndButtonLayout->addStretch(0);
-    EGtextAndButtonLayout->addWidget(EGchangeLineColorButton);
-    EGtextAndButtonLayout->addWidget(EGresetButton);
-    EGtextAndButtonLayout->addWidget(EGhomeButton);
-
-    EGmainLayout->addLayout(EGtextAndButtonLayout,4,1);
+    EGmainLayout->addWidget(EGinfoOptionsWidget,4,1);
     EGmainLayout->addItem(new QSpacerItem(10,10),5,1);
 
     EGmainWidget->setLayout(EGmainLayout);
 
     QObject::connect( &eulerGraph->m_scene, SIGNAL( stepedUp(uint,uint) ), this, SLOT( EGStepedUp(uint,uint) ) );
     QObject::connect( eulerGraph, SIGNAL( fullFinishedGraph() ), this, SLOT( setNextEulerGraph() ) );
-    QObject::connect(EGchangeLineColorButton, SIGNAL(released()), this, SLOT(chooseEGlineColor()));
-    QObject::connect(EGresetButton, SIGNAL(released()), this, SLOT(resetEulerGraphScore()));
-    QObject::connect( EGhomeButton, SIGNAL( released() ), this, SLOT( goToHomehPage() ) );
-    QObject::connect( EGeasyMode, SIGNAL( stateChanged(int) ), this, SLOT( changeEGClickMode(int) ) );
+    QObject::connect( EGinfoOptionsWidget, SIGNAL(chooseEGlineColorRequest()), this, SLOT(chooseEGlineColor()));
+    QObject::connect( EGinfoOptionsWidget, SIGNAL(resetEulerGraphScoreRequest()), this, SLOT(resetEulerGraphScore()));
+    QObject::connect( EGinfoOptionsWidget, SIGNAL( homePageRequest() ), this, SLOT( goToHomehPage() ) );
+    QObject::connect( EGinfoOptionsWidget, SIGNAL( easyModeStateChanged(int) ), this, SLOT( changeEGClickMode(int) ) );
     QObject::connect( this, SIGNAL( EGlineColorRequest(QColor)) , &eulerGraph->m_scene, SLOT( changeLineColor(QColor) ) ) ;
     QObject::connect( EGtimeChallengeWidget, SIGNAL( startChallengeRequest()) , this, SLOT( EGstartChallenge() ) ) ;
 
@@ -204,7 +181,7 @@ void MainWindow::onAbout()
 {
     QMessageBox::about( this, tr("About"),
      tr("Developed in March 2021 by ")+QString("Amir Hammoutene (amir.hammoutene@gmail.com)")+QString(tr("\n\nMusic by Yeo Sky"))
-                        +QString(tr("\n\nVersion Steam 1.6.0 - 19 January 2022")) );
+                        +QString(tr("\n\nVersion Steam 1.6.1 - 14 February 2022")) );
 }
 
 void MainWindow::onSourcesLink()
@@ -217,8 +194,10 @@ void MainWindow::goToHomehPage()
     stackedWidget->setCurrentIndex(0);
     // reset modules states, render ...
     eulerGraph->setGraph(0, QPair< QList<Vertex> , QList<Edge> >());
-    EGstateLabel->setText("");
+    EGinfoOptionsWidget->setInstructionsText("");
     musicPlayerWidget->stopMusic();
+    if(!congradulationPopup->isHidden())
+        congradulationPopup->close();
 }
 
 void MainWindow::applyStyleSheet()
@@ -270,7 +249,7 @@ void MainWindow::EGStepedUp(uint step, uint total)
 {
     if( !EulerGraphStageData.contains( EGscore+1 ))
     {
-        EGstateLabel->setText(tr("You finished all levels, good job!"));
+        EGinfoOptionsWidget->setInstructionsText(tr("You finished all levels, good job!"));
         congradulationPopup->show();
         return;
     }
@@ -283,7 +262,7 @@ void MainWindow::EGStepedUp(uint step, uint total)
         text = tr("Level ")+QString::number(eulerGraph->m_scene.m_currentStage)+tr(". Congratulation, you finished it!");
     else
         text = instructionText+tr(". Good beginning! Edge ")+QString::number(step)+"/"+QString::number(total);
-    EGstateLabel->setText(text);
+    EGinfoOptionsWidget->setInstructionsText(text);
 }
 
 void MainWindow::goToEulerGraphPage()
@@ -299,7 +278,7 @@ void MainWindow::goToEulerGraphPage()
         if(EGtimeChallengeWidget->running)
             EGtimeChallengeWidget->finishChallenge();
         eulerGraph->setGraph(0, QPair< QList<Vertex> , QList<Edge> >());
-        EGstateLabel->setText(tr("You finished all levels, good job!"));
+        EGinfoOptionsWidget->setInstructionsText(tr("You finished all levels, good job!"));
         congradulationPopup->show();
     }
     if(!musicPlayerWidget->dontDisturbPlaying)
@@ -320,6 +299,8 @@ void MainWindow::EGstartChallenge()
     EGscore = 0;
     eulerGraph->setGraph(0, QPair< QList<Vertex> , QList<Edge> >());
     goToEulerGraphPage();
+    if(!congradulationPopup->isHidden())
+        congradulationPopup->close();
 }
 
 void MainWindow::resetEulerGraphScore()
@@ -332,6 +313,8 @@ void MainWindow::resetEulerGraphScore()
         EGscore = 0;
         eulerGraph->setGraph( EGscore+1, EulerGraphStageData.value(EGscore+1) );
         eulerGraph->sceneSendStepUpSignal();
+        if(!congradulationPopup->isHidden())
+            congradulationPopup->close();
     }
 }
 
@@ -362,10 +345,6 @@ void MainWindow::changeEvent(QEvent *event)
        ui->retranslateUi(this);
        HPEulerGraphLabel->setText(tr("Eulerian Graphs"));
        HPcomingSoonLabel->setText(tr("coming soon..."));
-       EGeasyMode->setText(tr("Click by Click Mode"));
-       EGchangeLineColorButton->setText(tr("Change Eulerian Graphs lines' color..."));
-       EGresetButton->setText(tr("Reset Levels"));
-       EGhomeButton->setText(tr("Back to Menu"));
        if(stackedWidget->currentIndex() == 1)
         goToEulerGraphPage();
     }

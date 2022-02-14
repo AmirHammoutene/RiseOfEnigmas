@@ -86,14 +86,12 @@ void EulerGraphsTimeChallengeSendScoreDialog::sendScoreOnline()
 
     QNetworkAccessManager *networkManager = new QNetworkAccessManager(this);
 
-    QString game_id = "665470";
     QString guest = ui->pseudoLineEdit->text();
     QString score = timeScoreStr;
     QString sort = QString::number((int)timeScoreFl*10);
-    QString table_id = "674033";
 
     QUrl urlQueryPart("http://api.gamejolt.com/api/game/v1_2/scores/add/"
-        "?game_id="+game_id+"&guest="+guest+"&score="+score+"&sort="+sort+"&table_id="+table_id);
+        "?game_id="+PrivateData::GameJolt_GameId+"&guest="+guest+"&score="+score+"&sort="+sort+"&table_id="+PrivateData::GameJolt_TableId);
 
     if(!urlQueryPart.isValid())
     {

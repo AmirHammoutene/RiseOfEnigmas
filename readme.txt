@@ -25,5 +25,5 @@ https://www.qt.io/download
 - Compile
 ----------
 Conceived and developed by Amir Hammoutene (amir.hammoutene@gmail.com) in March 2021.
-Version Steam 1.6.0 : 19 January 2022
+Version Steam 1.6.1 : 14 February 2022
 Language of programmation and tools : C++, Qt Creator

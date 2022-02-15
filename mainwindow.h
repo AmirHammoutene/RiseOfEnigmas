@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QWidget>
+#include <QPushButton>
 #include <QStackedWidget>
 #include <QLabel>
 #include <QCheckBox>
@@ -31,6 +32,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     QStackedWidget *stackedWidget;
+    QPushButton *HPEulerGraphButton;// HP for "Home Page"
+    QPushButton *HPcomingSoonButton;
     EulerGraphInteract *eulerGraph; // Eulerian Graphs module
     EulerGraphsTimeChallengeWidget *EGtimeChallengeWidget;// EG for "Euler Graphs"
     EulerGraphsInfoAndOptionsWidget *EGinfoOptionsWidget;
@@ -48,6 +51,8 @@ public:
     QLabel *HPcomingSoonLabel;
 
     CongradulationDialog *congradulationPopup;
+
+    void scaleToScreen();
 
 private:
     Ui::MainWindow *ui;

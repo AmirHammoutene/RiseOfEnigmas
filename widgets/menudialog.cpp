@@ -1,6 +1,6 @@
 #include "menudialog.h"
 #include "ui_menudialog.h"
-
+#include <QScreen>
 MenuDialog::MenuDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::MenuDialog)
@@ -20,6 +20,25 @@ MenuDialog::MenuDialog(QWidget *parent) :
 MenuDialog::~MenuDialog()
 {
     delete ui;
+}
+
+void MenuDialog::scaleToScreen()
+{
+    QFont font = ui->label->font();
+    font.setPointSize(font.pointSize() * property("heightFactor").toReal());
+    ui->EGlineColorButton->setFont(font);
+    ui->EGresetButton->setFont(font);
+    ui->aboutButton->setFont(font);
+    ui->englishButton->setFont(font);
+    ui->frenchButton->setFont(font);
+    ui->label->setFont(font);
+    ui->label_2->setFont(font);
+    ui->quitButton->setFont(font);
+    ui->sourcesButton->setFont(font);
+
+    QRect screenGeometry = QGuiApplication::primaryScreen()->geometry();
+    move((screenGeometry.width() - width()) / 2,
+         (screenGeometry.height() - height()) / 2);
 }
 
 void MenuDialog::changeEvent(QEvent *event)

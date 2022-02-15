@@ -37,6 +37,31 @@ void EulerGraphsTimeChallengeWidget::finishChallenge()
     ui->sendScoreButton->setVisible(true);
 }
 
+void EulerGraphsTimeChallengeWidget::scaleToScreen()
+{
+    setFixedHeight(sizeHint().height() * property("heightFactor").toReal());
+    ui->eulerGraphsTimeChallengeStackedWidget->setFixedHeight(
+                ui->eulerGraphsTimeChallengeStackedWidget->sizeHint().height()
+                * property("heightFactor").toReal());
+    QFont base12Font = ui->label_3->font();
+    base12Font.setPointSize(base12Font.pointSize() * property("heightFactor").toReal());
+    ui->label_3->setFont(base12Font);
+    ui->label->setFont(base12Font);
+    QFont base14Font = ui->goToChallengePageButton->font();
+    base14Font.setPointSize(base14Font.pointSize() * property("heightFactor").toReal());
+    ui->goToChallengePageButton->setFont(base14Font);
+    QFont startFont = ui->startButton->font();
+    startFont.setPointSize(startFont.pointSize() * property("heightFactor").toReal());
+    ui->startButton->setFont(startFont);
+    QFont otherButtonFont = ui->sendScoreButton->font();
+    otherButtonFont.setPointSize(otherButtonFont.pointSize() * property("heightFactor").toReal());
+    ui->sendScoreButton->setFont(otherButtonFont);
+    ui->recordsButton->setFont(otherButtonFont);
+    QFont timeFont = ui->timeElapsedLabel->font();
+    timeFont.setPointSize(timeFont.pointSize() * property("heightFactor").toReal());
+    ui->timeElapsedLabel->setFont(timeFont);
+}
+
 void EulerGraphsTimeChallengeWidget::updateTime()
 {
     if(!running || !elapsedTimer.isValid())

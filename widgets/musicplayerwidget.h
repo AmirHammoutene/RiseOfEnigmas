@@ -28,6 +28,7 @@ public:
     static const int DefaultVolume;
     void setMusicTitle(QString str);
     bool isOnPause;
+    void scaleToScreen();
 public slots:
     void onPositionChanged(qint64 milliseconds);
     void onCurrentDeviceChanged(int index);

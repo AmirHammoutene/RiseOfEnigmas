@@ -20,7 +20,7 @@
     </message>
     <message>
         <source>Change Eulerian Graphs lines&apos; color...</source>
-        <translation>Changer la couleur des lignes des Graphes Eulériens...</translation>
+        <translation type="vanished">Changer la couleur des lignes des Graphes Eulériens...</translation>
     </message>
     <message>
         <source>Reset Levels</source>
@@ -29,6 +29,10 @@
     <message>
         <source>Back to Menu</source>
         <translation>Retour au menu</translation>
+    </message>
+    <message>
+        <source>Change lines&apos; color...</source>
+        <translation>Changer la couleur des lignes...</translation>
     </message>
 </context>
 <context>
@@ -460,7 +464,7 @@ Version Steam 1.6.1 - 14 Février 2022</translation>
     </message>
     <message>
         <source>Choose lines&apos; color</source>
-        <translation>Choisir la couleur des lignes</translation>
+        <translation type="vanished">Choisir la couleur des lignes</translation>
     </message>
     <message>
         <source>Reset Levels</source>
@@ -481,6 +485,10 @@ Version Steam 1.6.1 - 14 Février 2022</translation>
     <message>
         <source>Sources page on github.com...</source>
         <translation>Page des sources sur github.com...</translation>
+    </message>
+    <message>
+        <source>Change lines&apos; color</source>
+        <translation>Changer la couleur des lignes</translation>
     </message>
 </context>
 <context>

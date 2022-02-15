@@ -102,7 +102,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Choose lines' color</string>
+        <string>Change lines' color</string>
        </property>
       </widget>
      </item>

@@ -5,7 +5,8 @@ EulerGraphInteract::EulerGraphInteract(QWidget *parent)
 {
     setScene(&m_scene);
     setResizeAnchor(QGraphicsView::AnchorViewCenter);
-    setScale(1.);
+    screenScaleFactor = 1.;
+    setScale(screenScaleFactor);
     setFrameStyle(0);
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff );
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff );
@@ -51,7 +52,7 @@ void EulerGraphInteract::setGraph(uint stage, const QPair<const QList<Vertex> &,
         m_scaleAnimation = nullptr;
     }
     m_scene.clean();
-    setScale(1.);
+    setScale(screenScaleFactor);
     if(stage == 0) // Stage begins at 1
         return;
 
@@ -86,6 +87,12 @@ void EulerGraphInteract::sceneSendStepUpSignal()
     m_scene.sendStepUpSignal();
 }
 
+void EulerGraphInteract::scaleToScreen()
+{
+    screenScaleFactor = property("heightFactor").toReal();
+    setScale(screenScaleFactor);
+}
+
 
 void EulerGraphInteract::sceneHasFinished()
 {
@@ -101,7 +108,7 @@ void EulerGraphInteract::sceneHasFinished()
 void EulerGraphInteract::afterFinishedAnim()
 {
     m_scene.clean();
-    setScale(1.);
+    setScale(screenScaleFactor);
     if(!m_scaleAnimation.isNull())
     {
         delete m_scaleAnimation;

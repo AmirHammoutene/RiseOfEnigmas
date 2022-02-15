@@ -18,6 +18,21 @@ EulerGraphsInfoAndOptionsWidget::~EulerGraphsInfoAndOptionsWidget()
     delete ui;
 }
 
+void EulerGraphsInfoAndOptionsWidget::scaleToScreen()
+{
+    ui->EGchangeLineColorButton->setFixedHeight(ui->EGchangeLineColorButton->sizeHint().height()
+                                                * property("heightFactor").toReal());
+    QFont labelAndCheckBoxFont = ui->EGstateLabel->font();
+    labelAndCheckBoxFont.setPointSize(labelAndCheckBoxFont.pointSize()* property("heightFactor").toReal());
+    ui->EGstateLabel->setFont(labelAndCheckBoxFont);
+    ui->EGeasyMode->setFont(labelAndCheckBoxFont);
+    QFont buttonsFont = ui->EGchangeLineColorButton->font();
+    buttonsFont.setPointSize(buttonsFont.pointSize()* property("heightFactor").toReal());
+    ui->EGchangeLineColorButton->setFont(buttonsFont);
+    ui->EGresetButton->setFont(buttonsFont);
+    ui->EGhomeButton->setFont(buttonsFont);
+}
+
 void EulerGraphsInfoAndOptionsWidget::setClickByClickModeChecked(bool val)
 {
     ui->EGeasyMode->setChecked(val);

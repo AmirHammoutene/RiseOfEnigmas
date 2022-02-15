@@ -14,6 +14,7 @@ class EulerGraphsInfoAndOptionsWidget : public QWidget
 public:
     explicit EulerGraphsInfoAndOptionsWidget(QWidget *parent = nullptr);
     ~EulerGraphsInfoAndOptionsWidget();
+    void scaleToScreen();
 
 public slots:
     void setClickByClickModeChecked(bool val);

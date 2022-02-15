@@ -34,6 +34,8 @@ public:
     QPointer<QPropertyAnimation> m_scaleAnimation;
     const qreal s_scaleAtAnimEnd = 5.;
     void sceneSendStepUpSignal();
+    void scaleToScreen();
+    qreal screenScaleFactor;
 private:
     void renderEdges();
     void renderVertexes();

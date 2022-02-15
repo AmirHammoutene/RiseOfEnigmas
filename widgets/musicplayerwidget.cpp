@@ -93,6 +93,24 @@ void MusicPlayerWidget::setMusicTitle(QString str)
     ui->musicTitleLabel->setText(str);
 }
 
+void MusicPlayerWidget::scaleToScreen()
+{
+    QFont font = ui->label->font();
+    font.setPointSize(font.pointSize() * property("heightFactor").toReal());
+    ui->label->setFont(font);
+    ui->comboBox->setFont(font);
+    ui->musicTitleLabel->setFont(font);
+
+    ui->positionSlider->setFixedHeight(ui->positionSlider->sizeHint().height()
+                * property("heightFactor").toReal());
+    ui->pushButton->setFixedHeight(ui->pushButton->sizeHint().height()
+                * property("heightFactor").toReal());
+    ui->pushButton->setIconSize(QSize (ui->pushButton->iconSize().width() * property("widthFactor").toReal(),
+                                ui->pushButton->iconSize().height() * property("heightFactor").toReal()));
+    ui->volumeSlider->setFixedHeight(ui->volumeSlider->sizeHint().height()
+                * property("heightFactor").toReal());
+}
+
 void MusicPlayerWidget::onPositionChanged(qint64 milliseconds)
 {
     if(musicPlayer->error() == QMediaPlayer::NoError)

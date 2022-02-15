@@ -14,6 +14,7 @@ class MenuDialog : public QDialog
 public:
     explicit MenuDialog(QWidget *parent = nullptr);
     ~MenuDialog();
+    void scaleToScreen();
 signals:
     void changeToEnglishLanguage();
     void changeToFrenchLanguage();

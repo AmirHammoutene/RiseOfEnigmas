@@ -25,6 +25,7 @@ public:
     void finishChallenge();
     EulerGraphsTimeChallengeSendScoreDialog *sendScoreDialog;
     EulerGraphsTimeChallengeRecordsDialog *recordsDialog;
+    void scaleToScreen();
 public slots:
     void updateTime();
     void startOrStopChrono();

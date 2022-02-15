@@ -59,6 +59,33 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::scaleToScreen()
+{
+    HPEulerGraphButton->setIconSize(QSize(210 * property("widthFactor").toReal(), 243 * property("heightFactor").toReal()));
+    HPcomingSoonButton->setIconSize(QSize(210 * property("widthFactor").toReal(), 243 * property("heightFactor").toReal()));
+
+    QFont labelsFont = HPEulerGraphLabel->font();
+    labelsFont.setPointSize(labelsFont.pointSize()* property("heightFactor").toReal());
+    HPEulerGraphLabel->setFont(labelsFont);
+    HPcomingSoonLabel->setFont(labelsFont);
+
+    musicPlayerWidget->setProperty("heightFactor",property("heightFactor").toReal());
+    musicPlayerWidget->setProperty("widthFactor",property("widthFactor").toReal());
+    musicPlayerWidget->scaleToScreen();
+
+    EGtimeChallengeWidget->setProperty("heightFactor",property("heightFactor").toReal());
+    EGtimeChallengeWidget->scaleToScreen();
+
+    eulerGraph->setProperty("heightFactor",property("heightFactor").toReal());
+    eulerGraph->scaleToScreen();
+
+    EGinfoOptionsWidget->setProperty("heightFactor",property("heightFactor").toReal());
+    EGinfoOptionsWidget->scaleToScreen();
+
+    menuDialog->setProperty("heightFactor",property("heightFactor").toReal());
+    menuDialog->scaleToScreen();
+}
+
 void MainWindow::finishCreate()
 {
     statusBar()->hide();
@@ -71,8 +98,8 @@ void MainWindow::finishCreate()
     QScrollArea *HPmainWidget = new QScrollArea(stackedWidget);
     QGridLayout *HPmainLayout = new QGridLayout(HPmainWidget);
 
-    QPushButton *HPEulerGraphButton = new QPushButton(QIcon(":/img/EulerGraph.png"),"",HPmainWidget);
-    HPEulerGraphButton->setIconSize(QSize(210,243));
+    HPEulerGraphButton = new QPushButton(QIcon(":/img/EulerGraph.png"),"",HPmainWidget);
+    HPEulerGraphButton->setIconSize(QSize(210 , 243));
     HPEulerGraphButton->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
     HPEulerGraphLabel = new QLabel(tr("Eulerian Graphs"),HPmainWidget);
     HPEulerGraphLabel->setFont(QFont("Helvetica", 14,75));
@@ -84,7 +111,7 @@ void MainWindow::finishCreate()
     HPEulerGraphLayout->addSpacing(30);
     HPEulerGraphLayout->addWidget(HPEulerGraphLabel);
 
-    QPushButton *HPcomingSoonButton = new QPushButton(QIcon(":/img/comingSoon.png"),"",HPmainWidget);
+    HPcomingSoonButton = new QPushButton(QIcon(":/img/comingSoon.png"),"",HPmainWidget);
     HPcomingSoonButton->setIconSize(QSize(210,243));
     HPcomingSoonButton->setSizePolicy(QSizePolicy::Policy::Minimum,QSizePolicy::Policy::Minimum);
     HPcomingSoonButton->setEnabled(false);

@@ -16,7 +16,7 @@
     </message>
     <message>
         <source>Click by Click Mode</source>
-        <translation>Click by Click Mode</translation>
+        <translation type="vanished">Click by Click Mode</translation>
     </message>
     <message>
         <source>Change Eulerian Graphs lines&apos; color...</source>
@@ -33,6 +33,10 @@
     <message>
         <source>Change lines&apos; color...</source>
         <translation>Change lines&apos; color...</translation>
+    </message>
+    <message>
+        <source>Magnetic Mode</source>
+        <translation>Magnetic Mode</translation>
     </message>
 </context>
 <context>
@@ -318,9 +322,17 @@ Version Steam 1.6.0 - 19 January 2022</translation>
         <source>
 
 Version Steam 1.6.1 - 14 February 2022</source>
-        <translation>
+        <translation type="vanished">
 
 Version Steam 1.6.1 - 14 February 2022</translation>
+    </message>
+    <message>
+        <source>
+
+Version Steam 1.7.0 - 16 February 2022</source>
+        <translation>
+
+Version Steam 1.7.0 - 16 February 2022 {1.7.0 ?} {16 ?}</translation>
     </message>
 </context>
 <context>

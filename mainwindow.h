@@ -74,7 +74,7 @@ public slots:
     void applyStyleSheet();
     void chooseEGlineColor();
     void resetEulerGraphScore();
-    void changeEGClickMode(int status);
+    void changeEGMagnetMode(int status);
     void EGStepedUp(uint step, uint total);
     void setNextEulerGraph();
     void EGstartChallenge();

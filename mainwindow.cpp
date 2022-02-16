@@ -46,8 +46,8 @@ MainWindow::MainWindow(QWidget *parent)
     emit EGlineColorRequest(EGlineColor);
 
     EGclickbyClickMode = settings.value("EulerGraphClickByClickMode", false).toBool();
-    EGinfoOptionsWidget->setClickByClickModeChecked(EGclickbyClickMode);
-    changeEGClickMode(EGclickbyClickMode);
+    EGinfoOptionsWidget->setMagnetModeChecked(!EGclickbyClickMode);
+    changeEGMagnetMode(!EGclickbyClickMode);
 
     // Load game scores from registry
     QSettings scores(QSettings::UserScope, "Amir Hammoutene", "Rise Of Enigmas");
@@ -167,7 +167,7 @@ void MainWindow::finishCreate()
     QObject::connect( EGinfoOptionsWidget, SIGNAL(chooseEGlineColorRequest()), this, SLOT(chooseEGlineColor()));
     QObject::connect( EGinfoOptionsWidget, SIGNAL(resetEulerGraphScoreRequest()), this, SLOT(resetEulerGraphScore()));
     QObject::connect( EGinfoOptionsWidget, SIGNAL( homePageRequest() ), this, SLOT( goToHomehPage() ) );
-    QObject::connect( EGinfoOptionsWidget, SIGNAL( easyModeStateChanged(int) ), this, SLOT( changeEGClickMode(int) ) );
+    QObject::connect( EGinfoOptionsWidget, SIGNAL( magnetModeStateChanged(int) ), this, SLOT( changeEGMagnetMode(int) ) );
     QObject::connect( EGinfoOptionsWidget, SIGNAL( translateInstructionsRequest() ), this, SLOT( translateInstructions() ) );
     QObject::connect( this, SIGNAL( EGlineColorRequest(QColor)) , &eulerGraph->m_scene, SLOT( changeLineColor(QColor) ) ) ;
     QObject::connect( EGtimeChallengeWidget, SIGNAL( startChallengeRequest()) , this, SLOT( EGstartChallenge() ) ) ;
@@ -209,7 +209,7 @@ void MainWindow::onAbout()
 {
     QMessageBox::about( this, tr("About"),
      tr("Developed in March 2021 by ")+QString("Amir Hammoutene (amir.hammoutene@gmail.com)")+QString(tr("\n\nMusic by Yeo Sky"))
-                        +QString(tr("\n\nVersion Steam 1.6.1 - 14 February 2022")) );
+                        +QString(tr("\n\nVersion Steam 1.7.0 - 16 February 2022")) );
 }
 
 void MainWindow::onSourcesLink()
@@ -256,19 +256,19 @@ void MainWindow::chooseEGlineColor()
     }
 }
 
-void MainWindow::changeEGClickMode(int status)
+void MainWindow::changeEGMagnetMode(int status)
 {
     if(eulerGraph!= nullptr)
     {
         if(status == 0)
         {
-            EGclickbyClickMode = false;
-            eulerGraph->m_scene.m_clickByClikMode = false;
+            EGclickbyClickMode = true;
+            eulerGraph->m_scene.m_clickByClikMode = true;
         }
         else
         {
-            EGclickbyClickMode = true;
-            eulerGraph->m_scene.m_clickByClikMode = true;
+            EGclickbyClickMode = false;
+            eulerGraph->m_scene.m_clickByClikMode = false;
         }
     }
 }

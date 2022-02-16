@@ -60,7 +60,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QCheckBox" name="EGeasyMode">
+         <widget class="QCheckBox" name="EGmagnetMode">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
             <horstretch>0</horstretch>
@@ -74,7 +74,10 @@
            </font>
           </property>
           <property name="text">
-           <string>Click by Click Mode</string>
+           <string>Magnetic Mode</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
           </property>
          </widget>
         </item>

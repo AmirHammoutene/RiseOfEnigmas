@@ -83,39 +83,36 @@ void EGScene::mousePressEvent(QGraphicsSceneMouseEvent *event)
     if(isFinishing)
         return;
 
-    if(!m_clickByClikMode)
+    if(event->button() != Qt::LeftButton)
     {
-        tryDrawing = true;
+        resetDrawing();
+        emit stepedUp(m_currentLine, m_edgesShapesList.size());
+        tryDrawing = false;
         isAttached = false;
+        return;
+    }
+
+    tryDrawing = true;
+    QPointF computedMagnetedVertex = findMagnetedVertex(event);
+
+    if(computedMagnetedVertex != s_forbiddenPoint)// we are near a vertex
+    {
+        if( !isAttached )
+        {
+            origPoint = computedMagnetedVertex;
+            isAttached = true;
+        }
+        if( computedMagnetedVertex != origPoint)
+            checkAndDrawPermanentLine(event,computedMagnetedVertex);
+        else
+            drawCurrentLine(event);
     }
     else
     {
-        if(event->button() == Qt::RightButton)
-        {
-            resetDrawing();
-            emit stepedUp(m_currentLine, m_edgesShapesList.size());
-            isAttached = false;
-            return;
-        }
-        QPointF computedMagnetedVertex = findMagnetedVertex(event);
-        if(computedMagnetedVertex != s_forbiddenPoint)// we are near a vertex
-        {
-            if( !isAttached )
-            {
-                origPoint = computedMagnetedVertex;
-                isAttached = true;
-            }
-            if( computedMagnetedVertex != origPoint)
-                checkAndDrawPermanentLine(event,computedMagnetedVertex);
-            else
-                drawCurrentLine(event);
-        }
-        else
-        {
-            if(isAttached )
-                drawCurrentLine(event);
-        }
+        if(isAttached )
+            drawCurrentLine(event);
     }
+    //}
     QGraphicsScene::mousePressEvent(event);
 }
 
@@ -125,7 +122,7 @@ void EGScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         return;
     if(!m_clickByClikMode)
     {
-        if (tryDrawing) // we pressed the mouse button, and we keeped the mouse button pressed while moving
+        if (tryDrawing) // we already pressed the mouse button
         {
             QPointF computedMagnetedVertex = findMagnetedVertex(event);
             if(!isAttached) // previously, we were not drawing a line
@@ -160,13 +157,7 @@ void EGScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 {
     if(isFinishing)
         return;
-    if(!m_clickByClikMode)
-    {
-        tryDrawing = false;
-        isAttached = false;
-        resetDrawing();
-        emit stepedUp(m_currentLine, m_edgesShapesList.size());
-    }
+
     QGraphicsScene::mouseReleaseEvent(event);
 }
 

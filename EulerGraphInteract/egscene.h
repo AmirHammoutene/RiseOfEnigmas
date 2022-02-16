@@ -2,8 +2,7 @@
  * Amir Hammoutene - March 2021
  * Rise Of Enigmas
  * The principal goal is to have the control of mouse events (press, move, release) and of drawing of lines.
- * When not in Click by Click mode, we want lines to be drawn only near vertexes for the origin of the path, and that the user has to not release mouse button
- * to continue all lines, which will chain, to perform Euler Graph.
+ * When in Magnetic mode, we want lines to be drawn only near enough from vertexes
 */
 
 #ifndef EGSCENE_H

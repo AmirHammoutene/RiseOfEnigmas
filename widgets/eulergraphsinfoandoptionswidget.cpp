@@ -7,7 +7,7 @@ EulerGraphsInfoAndOptionsWidget::EulerGraphsInfoAndOptionsWidget(QWidget *parent
 {
     ui->setupUi(this);
 
-    QObject::connect(ui->EGeasyMode, SIGNAL( stateChanged(int) ), this, SIGNAL( easyModeStateChanged(int) ) );
+    QObject::connect(ui->EGmagnetMode, SIGNAL( stateChanged(int) ), this, SIGNAL( magnetModeStateChanged(int) ) );
     QObject::connect(ui->EGchangeLineColorButton, SIGNAL(released()), this, SIGNAL(chooseEGlineColorRequest()));
     QObject::connect(ui->EGhomeButton, SIGNAL(released()), this, SIGNAL(homePageRequest()));
     QObject::connect(ui->EGresetButton, SIGNAL(released()), this, SIGNAL(resetEulerGraphScoreRequest()));
@@ -25,7 +25,7 @@ void EulerGraphsInfoAndOptionsWidget::scaleToScreen()
     QFont labelAndCheckBoxFont = ui->EGstateLabel->font();
     labelAndCheckBoxFont.setPointSize(labelAndCheckBoxFont.pointSize()* property("heightFactor").toReal());
     ui->EGstateLabel->setFont(labelAndCheckBoxFont);
-    ui->EGeasyMode->setFont(labelAndCheckBoxFont);
+    ui->EGmagnetMode->setFont(labelAndCheckBoxFont);
     QFont buttonsFont = ui->EGchangeLineColorButton->font();
     buttonsFont.setPointSize(buttonsFont.pointSize()* property("heightFactor").toReal());
     ui->EGchangeLineColorButton->setFont(buttonsFont);
@@ -33,9 +33,9 @@ void EulerGraphsInfoAndOptionsWidget::scaleToScreen()
     ui->EGhomeButton->setFont(buttonsFont);
 }
 
-void EulerGraphsInfoAndOptionsWidget::setClickByClickModeChecked(bool val)
+void EulerGraphsInfoAndOptionsWidget::setMagnetModeChecked(bool val)
 {
-    ui->EGeasyMode->setChecked(val);
+    ui->EGmagnetMode->setChecked(val);
 }
 
 void EulerGraphsInfoAndOptionsWidget::setInstructionsText(const QString &str)

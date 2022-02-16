@@ -17,13 +17,13 @@ public:
     void scaleToScreen();
 
 public slots:
-    void setClickByClickModeChecked(bool val);
+    void setMagnetModeChecked(bool val);
     void setInstructionsText(const QString & str);
 signals:
     void homePageRequest();
     void resetEulerGraphScoreRequest();
     void chooseEGlineColorRequest();
-    void easyModeStateChanged(int);
+    void magnetModeStateChanged(int);
     void translateInstructionsRequest();
 protected:
     void changeEvent(QEvent* event) override;

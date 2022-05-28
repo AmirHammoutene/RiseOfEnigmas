@@ -9,6 +9,51 @@
     </message>
 </context>
 <context>
+    <name>EulerGraphGenerationPage</name>
+    <message>
+        <source>Return to normal mode</source>
+        <translation>Retour au mode normal</translation>
+    </message>
+    <message>
+        <source>Generate a Graph...</source>
+        <translation>Générer un Graph...</translation>
+    </message>
+    <message>
+        <source>Choose Eulerian Graphs lines&apos; color</source>
+        <translation>Choisir la couleur des lignes des Graphes Eulériens</translation>
+    </message>
+    <message>
+        <source>You have to complete the graph by passing through each of the edges only once, without lifting pencil.
+</source>
+        <translation>Vous devez compléter le graphe en passant par chacune des arêtes une seule fois, sans lever le crayon.
+</translation>
+    </message>
+    <message>
+        <source> total edges</source>
+        <translation> arêtes en tout</translation>
+    </message>
+    <message>
+        <source>Congratulation, you finished it!</source>
+        <translation>Félicitation, vous l&apos;avez terminé !</translation>
+    </message>
+    <message>
+        <source>Generated Level. Good beginning! Edge </source>
+        <translation>Niveau Généré. Bon début ! Arête </translation>
+    </message>
+    <message>
+        <source>Number of vertices required</source>
+        <translation>Nombre de sommets demandé</translation>
+    </message>
+    <message>
+        <source>How many vertices would you like to generate in your Eulerian Graph?</source>
+        <translation>Combien de sommets voudriez-vous générer dans votre Graphe Eulérien ?</translation>
+    </message>
+    <message>
+        <source>Generated level : </source>
+        <translation>Niveau Généré : </translation>
+    </message>
+</context>
+<context>
     <name>EulerGraphsInfoAndOptionsWidget</name>
     <message>
         <source>Form</source>
@@ -37,6 +82,51 @@
     <message>
         <source>Magnetic Mode</source>
         <translation>Mode Magnétique</translation>
+    </message>
+</context>
+<context>
+    <name>EulerGraphsPage</name>
+    <message>
+        <source>You finished all levels, good job!</source>
+        <translation>Vous avez terminé tous les niveaux, bien joué !</translation>
+    </message>
+    <message>
+        <source>Choose Eulerian Graphs lines&apos; color</source>
+        <translation>Choisir la couleur des lignes des Graphes Eulériens</translation>
+    </message>
+    <message>
+        <source>Reset Eulerian Graphs scores</source>
+        <translation>Réinitialiser les scores des Graphes Eulériens</translation>
+    </message>
+    <message>
+        <source>Warning, it will reset all levels already completed, are you sure ?</source>
+        <translation>Attention, cela va réinitialiser tous les niveaux déjà terminés, êtes-vous sûr ?</translation>
+    </message>
+    <message>
+        <source>You have to complete the graph by passing through each of the edges only once, without lifting pencil.
+Level </source>
+        <translation>Vous devez compléter le graphe en passant par chacune des arêtes une seule fois, sans lever le crayon.
+Niveau </translation>
+    </message>
+    <message>
+        <source> total edges</source>
+        <translation> arêtes en tout</translation>
+    </message>
+    <message>
+        <source>Level </source>
+        <translation>Niveau </translation>
+    </message>
+    <message>
+        <source>. Congratulation, you finished it!</source>
+        <translation>. Félicitation, vous l&apos;avez terminé !</translation>
+    </message>
+    <message>
+        <source>. Good beginning! Edge </source>
+        <translation>. Bon début ! Arête </translation>
+    </message>
+    <message>
+        <source>&lt;BETA : Eulerian Graph Generation&gt;</source>
+        <translation>&lt;BETA : Génération de Graphes Eulériens&gt;</translation>
     </message>
 </context>
 <context>
@@ -229,6 +319,81 @@ et lorsque vous serez prêt, le Défi en ligne de Temps vous attend !</translati
     </message>
 </context>
 <context>
+    <name>GraphGenerationProgressDialog</name>
+    <message>
+        <source>Eulerian Graph generation progression</source>
+        <translation>Progression de la génération du Graphe Eulérien</translation>
+    </message>
+    <message>
+        <source>Generating Eulerian Graph...</source>
+        <translation>En cours de génération d&apos;un Graphe Eulérien...</translation>
+    </message>
+    <message>
+        <source>Initializing...</source>
+        <translation>Initialisation...</translation>
+    </message>
+    <message>
+        <source>Step 1 of 4 : Placing vertices randomly (</source>
+        <translation>Etape 1 sur 4 : Placement aléatoire des sommets (</translation>
+    </message>
+    <message>
+        <source>Step 2 of 4 : Creating edges randomly for each vertex (</source>
+        <translation>Etape 2 sur 4 : Création aléatoire des arêtes pour chaque sommet (</translation>
+    </message>
+    <message>
+        <source>Step 3 of 4 : Deleting one-degree vertices until we have no more than 2 (</source>
+        <translation>Etape 3 sur 4 : Suppression des sommets à un degré jusqu&apos;à en avoir pas plus de 2 (</translation>
+    </message>
+    <message>
+        <source> left)...</source>
+        <translation> restant)...</translation>
+    </message>
+    <message>
+        <source>Step 4 of 4 : Arranging to have full of even-degree vertices (step : </source>
+        <translation>Etape 4 sur 4 : Réorganisation pour n&apos;avoir que des sommets de degré pair (étape : </translation>
+    </message>
+    <message>
+        <source> vertex : </source>
+        <translation> sommet : </translation>
+    </message>
+    <message>
+        <source>Step 4 of 4 : Arranging to have full of even-degree vertices (adding)
+</source>
+        <translation type="vanished">Etape 4 sur 4 : Réorganisation pour n&apos;avoir que des sommets de degré pair (ajout)
+</translation>
+    </message>
+    <message>
+        <source>Step 4 of 4 : Arranging to have full of even-degree vertices (deleting)
+</source>
+        <translation type="vanished">Etape 4 sur 4 : Réorganisation pour n&apos;avoir que des sommets de degré pair (suppression)
+</translation>
+    </message>
+    <message>
+        <source>Error while generating Eulerian Graph, please try again (error : </source>
+        <translation>Erreur au cours de la génération du Graphe Eulérien, veuillez réessayer (erreur : </translation>
+    </message>
+    <message>
+        <source>It seems to take too much time. The process will terminate in few seconds...</source>
+        <translation>Il semble que cela prenne trop de temps. Le processus va s&apos;interrompre dans quelques secondes...</translation>
+    </message>
+    <message>
+        <source>Step 4 of 4 : Arranging to have full of even-degree vertices (adding)
+
+</source>
+        <translation>Etape 4 sur 4 : Réorganisation pour n&apos;avoir que des sommets de degré pair (ajout)
+
+</translation>
+    </message>
+    <message>
+        <source>Step 4 of 4 : Arranging to have full of even-degree vertices (deleting)
+
+</source>
+        <translation>Etape 4 sur 4 : Réorganisation pour n&apos;avoir que des sommets de degré pair (suppression)
+
+</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>MainWindow</source>
@@ -242,11 +407,11 @@ Niveau </translation>
     </message>
     <message>
         <source> total edges</source>
-        <translation> arêtes en tout</translation>
+        <translation type="vanished"> arêtes en tout</translation>
     </message>
     <message>
         <source>Level </source>
-        <translation>Niveau </translation>
+        <translation type="vanished">Niveau </translation>
     </message>
     <message>
         <source>. Congratulation, you finished it !</source>
@@ -266,11 +431,11 @@ Niveau </translation>
     </message>
     <message>
         <source>Reset Eulerian Graphs scores</source>
-        <translation>Réinitialiser les scores des Graphes Eulériens</translation>
+        <translation type="vanished">Réinitialiser les scores des Graphes Eulériens</translation>
     </message>
     <message>
         <source>Warning, it will reset all levels already completed, are you sure ?</source>
-        <translation>Attention, cela va réinitialiser tous les niveaux déjà terminés, êtes-vous sûr ?</translation>
+        <translation type="vanished">Attention, cela va réinitialiser tous les niveaux déjà terminés, êtes-vous sûr ?</translation>
     </message>
     <message>
         <source>About</source>
@@ -291,7 +456,7 @@ Version 1.0 - 20 Mars 2021</translation>
     <message>
         <source>Choose Eulerian Graphs lines&apos; color</source>
         <oldsource>Choose Eulerian Graphs line color</oldsource>
-        <translation>Choisir la couleur des lignes des Graphes Eulériens</translation>
+        <translation type="vanished">Choisir la couleur des lignes des Graphes Eulériens</translation>
     </message>
     <message>
         <source>Quit</source>
@@ -379,15 +544,15 @@ Version 1.3 - 20 Novembre 2021</translation>
     </message>
     <message>
         <source>You finished all levels, good job!</source>
-        <translation>Vous avez terminé tous les niveaux, bien joué !</translation>
+        <translation type="vanished">Vous avez terminé tous les niveaux, bien joué !</translation>
     </message>
     <message>
         <source>. Congratulation, you finished it!</source>
-        <translation>. Félicitation, vous l&apos;avez terminé !</translation>
+        <translation type="vanished">. Félicitation, vous l&apos;avez terminé !</translation>
     </message>
     <message>
         <source>. Good beginning! Edge </source>
-        <translation>. Bon début ! Arête </translation>
+        <translation type="vanished">. Bon début ! Arête </translation>
     </message>
     <message>
         <source>Download page on gamejolt.com...</source>
@@ -436,7 +601,7 @@ Version 1.5.0 - 26 Novembre 2021</translation>
     <message>
         <source>You have to complete the graph by passing through each of the edges only once, without lifting pencil.
 Level </source>
-        <translation>Vous devez compléter le graphe en passant par chacune des arêtes une seule fois, sans lever le crayon.
+        <translation type="vanished">Vous devez compléter le graphe en passant par chacune des arêtes une seule fois, sans lever le crayon.
 Niveau </translation>
     </message>
     <message>
@@ -463,9 +628,25 @@ Version Steam 1.6.1 - 14 Février 2022</translation>
         <source>
 
 Version Steam 1.7.0 - 16 February 2022</source>
+        <translation type="vanished">
+
+Version Steam 1.7.0 - 16 Février 2022</translation>
+    </message>
+    <message>
+        <source>
+
+Version Steam 1.8.0 - 26 May 2022</source>
+        <translation type="vanished">
+
+Version Steam 1.8.0 - 26 Mai 2022</translation>
+    </message>
+    <message>
+        <source>
+
+Version Steam 2.0.0 - 28 May 2022</source>
         <translation>
 
-Version Steam 1.7.0 - 16 Février 2022 {1.7.0 ?} {16 ?}</translation>
+Version Steam 2.0.0 - 28 Mai 2022</translation>
     </message>
 </context>
 <context>

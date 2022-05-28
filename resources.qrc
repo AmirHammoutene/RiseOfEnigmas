@@ -9,5 +9,7 @@
         <file>img/pause.png</file>
         <file>img/resume.png</file>
         <file>img/fireworks.gif</file>
+        <file>img/leftArrow.png</file>
+        <file>img/rightArrow.png</file>
     </qresource>
 </RCC>

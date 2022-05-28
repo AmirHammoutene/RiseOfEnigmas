@@ -33,6 +33,11 @@ void EulerGraphsInfoAndOptionsWidget::scaleToScreen()
     ui->EGhomeButton->setFont(buttonsFont);
 }
 
+void EulerGraphsInfoAndOptionsWidget::setResetScoreVisible(bool val)
+{
+    ui->EGresetButton->setVisible(val);
+}
+
 void EulerGraphsInfoAndOptionsWidget::setMagnetModeChecked(bool val)
 {
     ui->EGmagnetMode->setChecked(val);
@@ -48,7 +53,7 @@ void EulerGraphsInfoAndOptionsWidget::changeEvent(QEvent *event)
     if(event->type() == QEvent::LanguageChange)
     {
        ui->retranslateUi(this);
-       emit translateInstructionsRequest();
+       emit translateEGInstructionsRequest();
     }
     QWidget::changeEvent(event);
 }

@@ -9,6 +9,51 @@
     </message>
 </context>
 <context>
+    <name>EulerGraphGenerationPage</name>
+    <message>
+        <source>Return to normal mode</source>
+        <translation>Return to normal mode</translation>
+    </message>
+    <message>
+        <source>Generate a Graph...</source>
+        <translation>Generate a Graph...</translation>
+    </message>
+    <message>
+        <source>Choose Eulerian Graphs lines&apos; color</source>
+        <translation>Choose Eulerian Graphs lines&apos; color</translation>
+    </message>
+    <message>
+        <source>You have to complete the graph by passing through each of the edges only once, without lifting pencil.
+</source>
+        <translation>You have to complete the graph by passing through each of the edges only once, without lifting pencil.
+</translation>
+    </message>
+    <message>
+        <source> total edges</source>
+        <translation> total edges</translation>
+    </message>
+    <message>
+        <source>Congratulation, you finished it!</source>
+        <translation>Congratulation, you finished it!</translation>
+    </message>
+    <message>
+        <source>Generated Level. Good beginning! Edge </source>
+        <translation>Generated Level. Good beginning! Edge </translation>
+    </message>
+    <message>
+        <source>Number of vertices required</source>
+        <translation>Number of vertices required</translation>
+    </message>
+    <message>
+        <source>How many vertices would you like to generate in your Eulerian Graph?</source>
+        <translation>How many vertices would you like to generate in your Eulerian Graph?</translation>
+    </message>
+    <message>
+        <source>Generated level : </source>
+        <translation>Generated level : </translation>
+    </message>
+</context>
+<context>
     <name>EulerGraphsInfoAndOptionsWidget</name>
     <message>
         <source>Form</source>
@@ -37,6 +82,51 @@
     <message>
         <source>Magnetic Mode</source>
         <translation>Magnetic Mode</translation>
+    </message>
+</context>
+<context>
+    <name>EulerGraphsPage</name>
+    <message>
+        <source>You finished all levels, good job!</source>
+        <translation>You finished all levels, good job!</translation>
+    </message>
+    <message>
+        <source>Choose Eulerian Graphs lines&apos; color</source>
+        <translation>Choose Eulerian Graphs lines&apos; color</translation>
+    </message>
+    <message>
+        <source>Reset Eulerian Graphs scores</source>
+        <translation>Reset Eulerian Graphs scores</translation>
+    </message>
+    <message>
+        <source>Warning, it will reset all levels already completed, are you sure ?</source>
+        <translation>Warning, it will reset all levels already completed, are you sure ?</translation>
+    </message>
+    <message>
+        <source>You have to complete the graph by passing through each of the edges only once, without lifting pencil.
+Level </source>
+        <translation>You have to complete the graph by passing through each of the edges only once, without lifting pencil.
+Level </translation>
+    </message>
+    <message>
+        <source> total edges</source>
+        <translation> total edges</translation>
+    </message>
+    <message>
+        <source>Level </source>
+        <translation>Level </translation>
+    </message>
+    <message>
+        <source>. Congratulation, you finished it!</source>
+        <translation>. Congratulation, you finished it!</translation>
+    </message>
+    <message>
+        <source>. Good beginning! Edge </source>
+        <translation>. Good beginning! Edge </translation>
+    </message>
+    <message>
+        <source>&lt;BETA : Eulerian Graph Generation&gt;</source>
+        <translation>&lt;BETA : Eulerian Graph Generation&gt;</translation>
     </message>
 </context>
 <context>
@@ -219,6 +309,69 @@ Press Ctrl+SpaceBar or click on &apos;Start Challenge&apos;</translation>
     </message>
 </context>
 <context>
+    <name>GraphGenerationProgressDialog</name>
+    <message>
+        <source>Eulerian Graph generation progression</source>
+        <translation>Eulerian Graph generation progression</translation>
+    </message>
+    <message>
+        <source>Generating Eulerian Graph...</source>
+        <translation>Generating Eulerian Graph...</translation>
+    </message>
+    <message>
+        <source>Initializing...</source>
+        <translation>Initializing...</translation>
+    </message>
+    <message>
+        <source>Step 1 of 4 : Placing vertices randomly (</source>
+        <translation>Step 1 of 4 : Placing vertices randomly (</translation>
+    </message>
+    <message>
+        <source>Step 2 of 4 : Creating edges randomly for each vertex (</source>
+        <translation>Step 2 of 4 : Creating edges randomly for each vertex (</translation>
+    </message>
+    <message>
+        <source>Step 3 of 4 : Deleting one-degree vertices until we have no more than 2 (</source>
+        <translation>Step 3 of 4 : Deleting one-degree vertices until we have no more than 2 (</translation>
+    </message>
+    <message>
+        <source> left)...</source>
+        <translation> left)...</translation>
+    </message>
+    <message>
+        <source>Step 4 of 4 : Arranging to have full of even-degree vertices (step : </source>
+        <translation>Step 4 of 4 : Arranging to have full of even-degree vertices (step : </translation>
+    </message>
+    <message>
+        <source> vertex : </source>
+        <translation> vertex : </translation>
+    </message>
+    <message>
+        <source>Error while generating Eulerian Graph, please try again (error : </source>
+        <translation>Error while generating Eulerian Graph, please try again (error : </translation>
+    </message>
+    <message>
+        <source>It seems to take too much time. The process will terminate in few seconds...</source>
+        <translation>It seems to take too much time. The process will terminate in few seconds...</translation>
+    </message>
+    <message>
+        <source>Step 4 of 4 : Arranging to have full of even-degree vertices (adding)
+
+</source>
+        <translation>Step 4 of 4 : Arranging to have full of even-degree vertices (adding)
+
+</translation>
+    </message>
+    <message>
+        <source>Step 4 of 4 : Arranging to have full of even-degree vertices (deleting)
+
+</source>
+        <translation>Step 4 of 4 : Arranging to have full of even-degree vertices (deleting)
+
+</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <source>MainWindow</source>
@@ -274,41 +427,41 @@ Version 1.5.0 - 26 November 2021</translation>
     </message>
     <message>
         <source>Choose Eulerian Graphs lines&apos; color</source>
-        <translation>Choose Eulerian Graphs lines&apos; color</translation>
+        <translation type="vanished">Choose Eulerian Graphs lines&apos; color</translation>
     </message>
     <message>
         <source>You finished all levels, good job!</source>
-        <translation>You finished all levels, good job!</translation>
+        <translation type="vanished">You finished all levels, good job!</translation>
     </message>
     <message>
         <source>You have to complete the graph by passing through each of the edges only once, without lifting pencil.
 Level </source>
-        <translation>You have to complete the graph by passing through each of the edges only once, without lifting pencil.
+        <translation type="vanished">You have to complete the graph by passing through each of the edges only once, without lifting pencil.
 Level </translation>
     </message>
     <message>
         <source> total edges</source>
-        <translation> total edges</translation>
+        <translation type="vanished"> total edges</translation>
     </message>
     <message>
         <source>Level </source>
-        <translation>Level </translation>
+        <translation type="vanished">Level </translation>
     </message>
     <message>
         <source>. Congratulation, you finished it!</source>
-        <translation>. Congratulation, you finished it!</translation>
+        <translation type="vanished">. Congratulation, you finished it!</translation>
     </message>
     <message>
         <source>. Good beginning! Edge </source>
-        <translation>. Good beginning! Edge </translation>
+        <translation type="vanished">. Good beginning! Edge </translation>
     </message>
     <message>
         <source>Reset Eulerian Graphs scores</source>
-        <translation>Reset Eulerian Graphs scores</translation>
+        <translation type="vanished">Reset Eulerian Graphs scores</translation>
     </message>
     <message>
         <source>Warning, it will reset all levels already completed, are you sure ?</source>
-        <translation>Warning, it will reset all levels already completed, are you sure ?</translation>
+        <translation type="vanished">Warning, it will reset all levels already completed, are you sure ?</translation>
     </message>
     <message>
         <source>
@@ -330,9 +483,17 @@ Version Steam 1.6.1 - 14 February 2022</translation>
         <source>
 
 Version Steam 1.7.0 - 16 February 2022</source>
+        <translation type="vanished">
+
+Version Steam 1.7.0 - 16 February 2022</translation>
+    </message>
+    <message>
+        <source>
+
+Version Steam 2.0.0 - 28 May 2022</source>
         <translation>
 
-Version Steam 1.7.0 - 16 February 2022 {1.7.0 ?} {16 ?}</translation>
+Version Steam 2.0.0 - 28 May 2022</translation>
     </message>
 </context>
 <context>

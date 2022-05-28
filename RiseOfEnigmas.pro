@@ -14,6 +14,8 @@ INCLUDEPATH += $$PWD/EulerGraphInteract
 include($$PWD/EulerGraphInteract/EulerGraphInteract.pri)
 
 SOURCES += \
+    eulergraphgenerationpage.cpp \
+    eulergraphspage.cpp \
     main.cpp \
     mainwindow.cpp \
     widgets/congradulationdialog.cpp \
@@ -22,11 +24,15 @@ SOURCES += \
     widgets/eulergraphstimechallengerecordsdialog.cpp \
     widgets/eulergraphstimechallengesendscoredialog.cpp \
     widgets/eulergraphstimechallengewidget.cpp \
+    widgets/graphgenerationprogressdialog.cpp \
     widgets/menudialog.cpp \
-    widgets/musicplayerwidget.cpp
+    widgets/musicplayerwidget.cpp \
+    workers/euleriangraphgenerationworker.cpp
 
 HEADERS += \
     PrivateData.h \
+    eulergraphgenerationpage.h \
+    eulergraphspage.h \
     mainwindow.h \
     widgets/congradulationdialog.h \
     widgets/congradulationlabel.h \
@@ -34,8 +40,10 @@ HEADERS += \
     widgets/eulergraphstimechallengerecordsdialog.h \
     widgets/eulergraphstimechallengesendscoredialog.h \
     widgets/eulergraphstimechallengewidget.h \
+    widgets/graphgenerationprogressdialog.h \
     widgets/menudialog.h \
-    widgets/musicplayerwidget.h
+    widgets/musicplayerwidget.h \
+    workers/euleriangraphgenerationworker.h
 
 FORMS += \
     mainwindow.ui \
@@ -44,6 +52,7 @@ FORMS += \
     widgets/eulergraphstimechallengerecordsdialog.ui \
     widgets/eulergraphstimechallengesendscoredialog.ui \
     widgets/eulergraphstimechallengewidget.ui \
+    widgets/graphgenerationprogressdialog.ui \
     widgets/menudialog.ui \
     widgets/musicplayerwidget.ui
 

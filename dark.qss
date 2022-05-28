@@ -61,7 +61,6 @@ QWidget#EGInfoAndOptionsMainWidget QLabel
 
 }
 
-
 /*-----QLabel-----*/
 QLabel
 {
@@ -977,7 +976,7 @@ QProgressBar
 
 QProgressBar::chunk
 {
-    background-color: #787878;
+    background-color: #aa5500;
     width: 30px;
     margin: 0.5px;
 

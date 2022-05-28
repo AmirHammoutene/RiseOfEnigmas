@@ -1,8 +1,9 @@
 These are series of enigmas games.
 Enjoy thinking about puzzles.
 
-This 1.6.0 Steam version contains :
+This 2.0.0 Steam version contains :
 - Eulerian Graphs series (with online time challenge)
+- Eulerian Graphs Generator (beta)
 
 ...but more types of enigmas are coming soon
 
@@ -25,5 +26,5 @@ https://www.qt.io/download
 - Compile
 ----------
 Conceived and developed by Amir Hammoutene (amir.hammoutene@gmail.com) in March 2021.
-Version Steam 1.7.0 : 16 February 2022
+Version Steam 2.0.0 : 28 May 2022
 Language of programmation and tools : C++, Qt Creator

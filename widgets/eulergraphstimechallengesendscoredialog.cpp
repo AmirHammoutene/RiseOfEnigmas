@@ -2,6 +2,7 @@
 #include "ui_eulergraphstimechallengesendscoredialog.h"
 #include "PrivateData.h"
 #include <QSettings>
+#include <QStandardPaths>
 #include <QMessageBox>
 #include <QNetworkAccessManager>
 #include <QJsonDocument>
@@ -23,6 +24,11 @@ EulerGraphsTimeChallengeSendScoreDialog::EulerGraphsTimeChallengeSendScoreDialog
     timeScoreFl = 999.9f;
     timeScoreStr = "999.9";
     inError = false;
+
+    QSettings::setDefaultFormat(QSettings::IniFormat);
+    QSettings::setPath(QSettings::defaultFormat(), QSettings::UserScope,
+        QStandardPaths::writableLocation(QStandardPaths::AppDataLocation)); // Most settings stored in a ini file in AppData
+
 
     QObject::connect(ui->buttonBox, SIGNAL(accepted()), this, SLOT(sendScoreOnline()));
     QObject::connect(ui->buttonBox, SIGNAL(rejected()), this, SLOT(reject()));

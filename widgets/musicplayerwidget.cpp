@@ -7,6 +7,8 @@
 const int MusicPlayerWidget::DefaultVolume = 5;
 bool MusicPlayerWidget::hasManuallyChosenDevice = false;
 int MusicPlayerWidget::chosenDeviceIndex = 0;
+bool MusicPlayerWidget::dontDisturbPlaying = false;
+bool MusicPlayerWidget::isOnPause = false;
 
 MusicPlayerWidget::MusicPlayerWidget(QWidget *parent) :
     QWidget(parent),
@@ -19,8 +21,6 @@ MusicPlayerWidget::MusicPlayerWidget(QWidget *parent) :
     audioOutput->setVolume((float)(DefaultVolume/100.));
     ui->volumeSlider->setValue(DefaultVolume);
     musicPlayer->setAudioOutput(audioOutput);
-    dontDisturbPlaying = false;
-    isOnPause = false;
     ui->pushButton->setFixedSize(42,42);
     ui->pushButton->setIcon(QIcon(":/img/pause.png"));
 
@@ -103,10 +103,8 @@ void MusicPlayerWidget::scaleToScreen()
 
     ui->positionSlider->setFixedHeight(ui->positionSlider->sizeHint().height()
                 * property("heightFactor").toReal());
-    ui->pushButton->setFixedHeight(ui->pushButton->sizeHint().height()
-                * property("heightFactor").toReal());
-    ui->pushButton->setIconSize(QSize (ui->pushButton->iconSize().width() * property("widthFactor").toReal(),
-                                ui->pushButton->iconSize().height() * property("heightFactor").toReal()));
+    ui->pushButton->setFixedHeight(42 * property("heightFactor").toReal());
+    ui->pushButton->setIconSize(QSize (42 * property("widthFactor").toReal(), 42 * property("heightFactor").toReal()));
     ui->volumeSlider->setFixedHeight(ui->volumeSlider->sizeHint().height()
                 * property("heightFactor").toReal());
 }

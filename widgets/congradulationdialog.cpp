@@ -11,6 +11,7 @@ CongradulationDialog::CongradulationDialog(QWidget *parent) :
     setStyleSheet("QDialog {background-color: rgba( 60, 60, 60, 0% );}");
     CongradulationLabel *congradulationLabel = new CongradulationLabel(this);
     ui->horizontalLayout->addWidget(congradulationLabel,0, Qt::AlignHCenter);
+    close();
 }
 
 CongradulationDialog::~CongradulationDialog()

@@ -15,6 +15,7 @@ public:
     explicit EulerGraphsInfoAndOptionsWidget(QWidget *parent = nullptr);
     ~EulerGraphsInfoAndOptionsWidget();
     void scaleToScreen();
+    void setResetScoreVisible(bool val = true);
 
 public slots:
     void setMagnetModeChecked(bool val);
@@ -24,7 +25,7 @@ signals:
     void resetEulerGraphScoreRequest();
     void chooseEGlineColorRequest();
     void magnetModeStateChanged(int);
-    void translateInstructionsRequest();
+    void translateEGInstructionsRequest();
 protected:
     void changeEvent(QEvent* event) override;
 private:

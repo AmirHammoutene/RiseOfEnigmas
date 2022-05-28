@@ -78,6 +78,8 @@ void EulerGraphsTimeChallengeWidget::updateTime()
 
 void EulerGraphsTimeChallengeWidget::startOrStopChrono()
 {
+    if(ui->eulerGraphsTimeChallengeStackedWidget->currentIndex() != 1)
+        return;
     if(!running)
     {
         emit startChallengeRequest();

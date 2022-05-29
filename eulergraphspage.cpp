@@ -222,7 +222,7 @@ void EulerGraphsPage::changeEGMagnetMode(int status)
 
 void EulerGraphsPage::EGStepedUp(uint step, uint total)
 {
-    if( !EulerGraphStageData.contains( EGscore+1 ))
+    if( !EulerGraphStageData.contains( currentGraphNum+1 ))
     {
         EGinfoOptionsWidget->setInstructionsText(tr("You finished all levels, good job!"));
         congradulationPopup->show();

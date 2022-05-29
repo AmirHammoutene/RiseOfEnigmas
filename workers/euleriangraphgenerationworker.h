@@ -19,6 +19,7 @@ public:
     const static double s_planLimitX;
     const static double s_planLimitY;
     const static double s_distanceSquareMinAcceptable;
+    const static double s_cosineSquareMaxAcceptable;
     const static double s_distanceSquareConnectFirstPass;
     const static double s_distanceSquareConnectSecondPass;
     const static int s_timeout;
@@ -33,6 +34,8 @@ private:
     bool doEveryVerticesAreEven();
     bool doesEdgeExist(const Edge & theEdge);
     int countOneDegreeVertices();
+    bool wouldEdgesBeSuperimposed(const Edge & oneEdge, const Edge & otherEdge);
+    bool wouldEdgesBeSuperimposedToAnyExisting(const Edge & theEdge);
     QElapsedTimer m_timer;
 signals:
     void sendStepInfo(uint step, QVariant info1 = QVariant(), QVariant info2 = QVariant(), QVariant info3 = QVariant(), QVariant info4 = QVariant());

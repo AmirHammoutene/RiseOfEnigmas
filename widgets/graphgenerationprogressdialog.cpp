@@ -17,6 +17,7 @@ GraphGenerationProgressDialog::~GraphGenerationProgressDialog()
 
 void GraphGenerationProgressDialog::setStepTextAndProgressValue(uint step, QVariant otherInfo1, QVariant otherInfo2, QVariant otherInfo3, QVariant otherInfo4)
 {
+    ui->buttonBox->setVisible(false);
     QString stepText;
     int percentage = 0;
 
@@ -43,20 +44,21 @@ void GraphGenerationProgressDialog::setStepTextAndProgressValue(uint step, QVari
     case 11:
         stepText = tr("Step 1 of 4 : Placing vertices randomly (")+QString::number(otherInfo1.toInt())+"/"+QString::number(otherInfo2.toInt())+")\n\n"+
                 tr("It seems to take too much time. The process will terminate in few seconds...");
-        percentage = otherInfo4.toInt() != 0 ? 100*otherInfo3.toInt()/otherInfo4.toInt() : 0;
+        percentage = otherInfo4.toInt() != 0 ? 100*(otherInfo4.toInt()-otherInfo3.toInt())/otherInfo4.toInt() : 0;
         break;
     case 14:
         stepText = tr("Step 4 of 4 : Arranging to have full of even-degree vertices (adding)\n\n")+
                 tr("It seems to take too much time. The process will terminate in few seconds...");
-        percentage = otherInfo2.toInt() != 0 ? 100*otherInfo1.toInt()/otherInfo2.toInt() : 0;
+        percentage = otherInfo2.toInt() != 0 ? 100*(otherInfo2.toInt()-otherInfo1.toInt())/otherInfo2.toInt() : 0;
         break;
     case 15:
         stepText = tr("Step 4 of 4 : Arranging to have full of even-degree vertices (deleting)\n\n")+
                 tr("It seems to take too much time. The process will terminate in few seconds...");
-        percentage = otherInfo2.toInt() != 0 ? 100*otherInfo1.toInt()/otherInfo2.toInt() : 0;
+        percentage = otherInfo2.toInt() != 0 ? 100*(otherInfo2.toInt()-otherInfo1.toInt())/otherInfo2.toInt() : 0;
         break;
     default:
         stepText = tr("Error while generating Eulerian Graph, please try again (error : ")+QString::number(step)+").";
+        ui->buttonBox->setVisible(true);
         break;
     }
     ui->stepLabel->setText(stepText);

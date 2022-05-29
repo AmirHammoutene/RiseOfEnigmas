@@ -7,6 +7,7 @@ const double EulerianGraphGenerationWorker::s_distanceSquareMinAcceptable = 5625
 const double EulerianGraphGenerationWorker::s_distanceSquareConnectFirstPass = 22500.; //(150*150)
 const double EulerianGraphGenerationWorker::s_distanceSquareConnectSecondPass = 90000.; //(300*300)
 const int EulerianGraphGenerationWorker::s_timeout = 10000;
+const double EulerianGraphGenerationWorker::s_cosineSquareMaxAcceptable = 0.99240395683; // 5 degrees angle
 
 EulerianGraphGenerationWorker::EulerianGraphGenerationWorker()
     : QObject{}
@@ -94,14 +95,16 @@ void EulerianGraphGenerationWorker::process()
         if(checkVertexConnectionNumber(it->m_theOne) <= 1)
         {
             m_generatedGraphData.first.removeOne(it->m_theOne);
-            m_generatedGraphData.second.removeOne(*(it--));
+            it = m_generatedGraphData.second.erase(it);
+            --it;
             continue;
         }
 
         if(checkVertexConnectionNumber(it->m_theOther) <= 1)
         {
             m_generatedGraphData.first.removeOne(it->m_theOther);
-            m_generatedGraphData.second.removeOne(*(it--));
+            it = m_generatedGraphData.second.erase(it);
+            --it;
         }
     }
 
@@ -149,6 +152,12 @@ void EulerianGraphGenerationWorker::process()
                 }
             }
         }
+        if(passStep4 > 30)
+        {
+            emit sendStepInfo(26);
+            emit finished();
+            return;
+        }
     }
 
     emit sendGraphData(m_generatedGraphData);
@@ -181,64 +190,87 @@ void EulerianGraphGenerationWorker::connectVertexRandomly(const Vertex &theVerte
 
     for(QList<Vertex>::iterator it = m_generatedGraphData.first.begin() ; it != m_generatedGraphData.first.end() ; ++it)
     {
+        if(currentConnectionNumber >= randomConnectionNumber)
+            return;
+
         if(*it == theVertex)
             continue;
+
+        Edge edgeToAdd(*it, theVertex);
+        if(doesEdgeExist(edgeToAdd))
+            continue;
+
         double distance = (it->m_x - theVertex.m_x)*(it->m_x - theVertex.m_x) + (it->m_y - theVertex.m_y)*(it->m_y - theVertex.m_y);
         if( distance < s_distanceSquareConnectFirstPass)
         {
-            if(checkVertexConnectionNumber(*it) < m_vertexConnectionMaxNumber)
+            if(checkVertexConnectionNumber(theVertex) < m_vertexConnectionMaxNumber)
             {
-                Edge edgeToAdd(*it, theVertex);
-                if(!doesEdgeExist(edgeToAdd))
+                if(wouldEdgesBeSuperimposedToAnyExisting(edgeToAdd))
+                    continue;
+                else
                 {
                     m_generatedGraphData.second.append(edgeToAdd);
                     ++currentConnectionNumber;
-                    if(currentConnectionNumber >= randomConnectionNumber)
-                        return;
                 }
             }
         }
     }
 
     // Second Pass
+
     for(QList<Vertex>::iterator it = m_generatedGraphData.first.begin() ; it != m_generatedGraphData.first.end() ; ++it)
     {
+        if(currentConnectionNumber >= randomConnectionNumber)
+            return;
+
         if(*it == theVertex)
             continue;
+
+        Edge edgeToAdd(*it, theVertex);
+        if(doesEdgeExist(edgeToAdd))
+            continue;
+
         double distance = (it->m_x - theVertex.m_x)*(it->m_x - theVertex.m_x) + (it->m_y - theVertex.m_y)*(it->m_y - theVertex.m_y);
         if( distance >= s_distanceSquareConnectFirstPass && distance < s_distanceSquareConnectSecondPass)
         {
-            if(checkVertexConnectionNumber(*it) < m_vertexConnectionMaxNumber)
+            if(checkVertexConnectionNumber(theVertex) < m_vertexConnectionMaxNumber)
             {
-                Edge edgeToAdd(*it, theVertex);
-                if(!doesEdgeExist(edgeToAdd))
+                if(wouldEdgesBeSuperimposedToAnyExisting(edgeToAdd))
+                    continue;
+                else
                 {
                     m_generatedGraphData.second.append(edgeToAdd);
                     ++currentConnectionNumber;
-                    if(currentConnectionNumber >= randomConnectionNumber)
-                        return;
                 }
             }
         }
     }
 
     // Last Pass
+
     for(QList<Vertex>::iterator it = m_generatedGraphData.first.begin() ; it != m_generatedGraphData.first.end() ; ++it)
     {
+        if(currentConnectionNumber >= randomConnectionNumber)
+            return;
+
         if(*it == theVertex)
             continue;
+
+        Edge edgeToAdd(*it, theVertex);
+        if(doesEdgeExist(edgeToAdd))
+            continue;
+
         double distance = (it->m_x - theVertex.m_x)*(it->m_x - theVertex.m_x) + (it->m_y - theVertex.m_y)*(it->m_y - theVertex.m_y);
         if( distance >= s_distanceSquareConnectSecondPass)
         {
-            if(checkVertexConnectionNumber(*it) < m_vertexConnectionMaxNumber)
+            if(checkVertexConnectionNumber(theVertex) < m_vertexConnectionMaxNumber)
             {
-                Edge edgeToAdd(*it, theVertex);
-                if(!doesEdgeExist(edgeToAdd))
+                if(wouldEdgesBeSuperimposedToAnyExisting(edgeToAdd))
+                    continue;
+                else
                 {
                     m_generatedGraphData.second.append(edgeToAdd);
                     ++currentConnectionNumber;
-                    if(currentConnectionNumber >= randomConnectionNumber)
-                        return;
                 }
             }
         }
@@ -250,18 +282,27 @@ bool EulerianGraphGenerationWorker::connectVertexToOneRandom(const Vertex &theVe
 {
     int randomVertexIndex = 0;
     m_timer.start();
+    uint numRefusedSuperimposed = 0;
+    uint numRefusedConnectNum = 0;
     Vertex randomVertex;
     do
     {
         randomVertexIndex = QRandomGenerator::global()->bounded(0,m_generatedGraphData.first.size());
         randomVertex = m_generatedGraphData.first.at(randomVertexIndex);
+
+        if(wouldEdgesBeSuperimposedToAnyExisting(Edge(randomVertex,theVertex)))
+            ++numRefusedSuperimposed;
+        if(checkVertexConnectionNumber(randomVertex) >= m_vertexConnectionMaxNumber)
+            ++numRefusedConnectNum;
+
         if(m_timer.elapsed() > s_timeout/2)
             emit sendStepInfo(14, m_timer.elapsed(), s_timeout);
         if(m_timer.elapsed() > s_timeout)
             return false;
     }
     while(randomVertex == theVertex || doesEdgeExist(Edge(randomVertex,theVertex))
-          || m_oneDegreeVerticesList.contains(randomVertex) || checkVertexConnectionNumber(randomVertex) >= m_vertexConnectionMaxNumber);
+          || m_oneDegreeVerticesList.contains(randomVertex) || numRefusedConnectNum < 20
+          || numRefusedSuperimposed < 20);
 
     m_generatedGraphData.second.append(Edge(randomVertex,theVertex));
 
@@ -291,7 +332,7 @@ bool EulerianGraphGenerationWorker::disconnectVertexFromOneRandom(const Vertex &
         if(m_timer.elapsed() > s_timeout)
             return false;
     }
-    while(m_oneDegreeVerticesList.contains(theOtherVertex) || checkVertexConnectionNumber(theOtherVertex) <= 2 );
+    while(checkVertexConnectionNumber(theOtherVertex) <= 2 );
 
     m_generatedGraphData.second.removeOne(randomEdge);
 
@@ -341,4 +382,69 @@ int EulerianGraphGenerationWorker::countOneDegreeVertices()
     }
 
     return numReturned;
+}
+
+bool EulerianGraphGenerationWorker::wouldEdgesBeSuperimposed(const Edge &oneEdge, const Edge &otherEdge)
+{
+    if(oneEdge == otherEdge)
+        return true;
+
+    double OAx,OAy,OBx,OBy = 0;
+
+    if(oneEdge.m_theOne == otherEdge.m_theOne)
+    {
+        OAx = oneEdge.m_theOther.m_x-oneEdge.m_theOne.m_x;
+        OAy = oneEdge.m_theOther.m_y-oneEdge.m_theOne.m_y;
+        OBx = otherEdge.m_theOther.m_x-oneEdge.m_theOne.m_x;
+        OBy = otherEdge.m_theOther.m_y-oneEdge.m_theOne.m_y;
+    }
+    else if(oneEdge.m_theOne == otherEdge.m_theOther)
+    {
+        OAx = oneEdge.m_theOther.m_x-oneEdge.m_theOne.m_x;
+        OAy = oneEdge.m_theOther.m_y-oneEdge.m_theOne.m_y;
+        OBx = otherEdge.m_theOne.m_x-oneEdge.m_theOne.m_x;
+        OBy = otherEdge.m_theOne.m_y-oneEdge.m_theOne.m_y;
+    }
+    else if(oneEdge.m_theOther == otherEdge.m_theOne)
+    {
+        OAx = oneEdge.m_theOne.m_x-oneEdge.m_theOther.m_x;
+        OAy = oneEdge.m_theOne.m_y-oneEdge.m_theOther.m_y;
+        OBx = otherEdge.m_theOther.m_x-oneEdge.m_theOther.m_x;
+        OBy = otherEdge.m_theOther.m_y-oneEdge.m_theOther.m_y;
+    }
+    else if(oneEdge.m_theOther == otherEdge.m_theOther)
+    {
+        OAx = oneEdge.m_theOne.m_x-oneEdge.m_theOther.m_x;
+        OAy = oneEdge.m_theOne.m_y-oneEdge.m_theOther.m_y;
+        OBx = otherEdge.m_theOne.m_x-oneEdge.m_theOther.m_x;
+        OBy = otherEdge.m_theOne.m_y-oneEdge.m_theOther.m_y;
+    }
+    else
+        return false;
+
+    double scalarProduct = OAx * OBx + OAy * OBy;
+
+    if(scalarProduct < 0.)
+        return false;
+
+    double magnitudeSquareProduct = (OAx * OAx + OAy * OAy)*(OBx * OBx + OBy * OBy);
+
+    if(magnitudeSquareProduct == 0.)
+        return true;
+
+    double cosineSquare = scalarProduct * scalarProduct / magnitudeSquareProduct;
+
+    if( cosineSquare > s_cosineSquareMaxAcceptable)
+        return true;
+    return false;
+}
+
+bool EulerianGraphGenerationWorker::wouldEdgesBeSuperimposedToAnyExisting(const Edge &theEdge)
+{
+    for(QList<Edge>::iterator it = m_generatedGraphData.second.begin() ; it != m_generatedGraphData.second.end() ; ++it)
+    {
+        if(wouldEdgesBeSuperimposed(theEdge,*it))
+            return true;
+    }
+    return false;
 }
